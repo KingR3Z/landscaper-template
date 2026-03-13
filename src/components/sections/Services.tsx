@@ -25,7 +25,7 @@ export default function Services() {
 
   return (
     <section ref={sectionRef} className="bg-white">
-      {/* Full-width Tab Headers */}
+      {/* Full-width Tab Headers — evenly spaced like reference */}
       <div
         className="reveal-item"
         style={{
@@ -41,15 +41,17 @@ export default function Services() {
             onClick={() => setActiveTab(i)}
             className="py-5 text-center transition-all duration-300"
             style={{
-              fontSize: "12px",
+              fontSize: "clamp(10px, 0.9vw, 13px)",
               letterSpacing: "0.15em",
               fontWeight: 400,
               fontFamily: "var(--font-body)",
               color: i === activeTab ? "var(--charcoal)" : "var(--warm-grey)",
               background: i === activeTab ? "var(--sage)" : "transparent",
               border: "none",
+              borderRight: i < servicesData.tabs.length - 1 ? "1px solid #e8e6e1" : "none",
               cursor: "pointer",
               textTransform: "uppercase" as const,
+              padding: "20px 8px",
             }}
           >
             {t.label}
@@ -61,8 +63,8 @@ export default function Services() {
       <div className="section-padding">
         <div className="container-custom">
           <div ref={contentRef} className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
-            {/* Image — left side, arch-shaped */}
-            <div className="relative aspect-[4/3] overflow-hidden" style={{ borderRadius: "300px 300px 0 0" }}>
+            {/* Image — left side, tall arch-shaped like reference */}
+            <div className="relative overflow-hidden" style={{ borderRadius: "300px 300px 0 0", aspectRatio: "3/4" }}>
               <Image
                 src={tab.image}
                 alt={tab.title}

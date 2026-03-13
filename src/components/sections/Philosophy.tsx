@@ -9,7 +9,7 @@ export default function Philosophy() {
   const sectionRef = useReveal(".reveal-item");
 
   return (
-    <section ref={sectionRef} className="bg-white section-padding">
+    <section ref={sectionRef} className="section-padding" style={{ background: "#D5DDD1" }}>
       <div className="container-custom">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           {/* Text — left side */}

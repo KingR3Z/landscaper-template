@@ -23,13 +23,13 @@ export default function Navigation() {
           className="flex items-center justify-between"
           style={{ padding: "0 clamp(24px, 4vw, 64px)", height: "70px" }}
         >
-          {/* Desktop Nav — links spread evenly, no logo */}
-          <nav className="hidden lg:flex items-center gap-0 flex-1">
+          {/* Desktop Nav — links spread evenly across full width, no logo */}
+          <nav className="desktop-nav items-center gap-0 flex-1">
             {mainNav.links.map((link) => (
               <Link
                 key={link.label}
                 href={link.href}
-                className="flex-1 text-center text-sm transition-opacity hover:opacity-60"
+                className="flex-1 text-center transition-opacity hover:opacity-60"
                 style={{
                   color: "var(--charcoal)",
                   fontFamily: "var(--font-body)",
@@ -40,32 +40,33 @@ export default function Navigation() {
                 }}
               >
                 {link.label}
-                {link.children && <span className="ml-1 text-xs opacity-50">&#8964;</span>}
+                {link.children && <span style={{ marginLeft: "4px", fontSize: "12px", opacity: 0.5 }}>&#8964;</span>}
               </Link>
             ))}
           </nav>
 
-          {/* Mobile: Brand name (visible only on mobile) */}
+          {/* Mobile: Brand name (hidden on desktop via CSS) */}
           <Link
             href="/"
-            className="lg:hidden font-display text-lg tracking-wide"
+            className="mobile-brand font-display text-lg tracking-wide"
             style={{ color: "var(--charcoal)" }}
           >
             Hartwood
           </Link>
 
-          {/* CTA Button — always visible on desktop */}
+          {/* CTA Button — outline style like reference */}
           <Link
             href={mainNav.cta.href}
-            className="hidden lg:inline-flex items-center gap-2 ml-4"
+            className="desktop-cta items-center gap-2 ml-4"
             style={{
               padding: "10px 28px",
-              background: "var(--sage)",
+              background: "transparent",
               color: "var(--charcoal)",
               fontFamily: "var(--font-body)",
               fontSize: "14px",
               fontWeight: 400,
               borderRadius: "50px",
+              border: "1px solid var(--charcoal)",
               textDecoration: "none",
               transition: "all 0.3s ease",
               whiteSpace: "nowrap",
@@ -77,7 +78,7 @@ export default function Navigation() {
           {/* Mobile Hamburger */}
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="lg:hidden flex flex-col gap-[5px] p-2"
+            className="mobile-hamburger flex flex-col gap-[5px] p-2"
             aria-label="Toggle menu"
           >
             <span

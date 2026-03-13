@@ -59,14 +59,17 @@ export default function Intro() {
             </div>
           </div>
 
-          {/* Image — right side, CIRCLE masked */}
-          <div className="reveal-item relative flex justify-center">
+          {/* Image — right side, LARGE CIRCLE masked like reference */}
+          <div className="reveal-item relative flex justify-center" style={{ overflow: "visible" }}>
             <div
               className="relative overflow-hidden"
               style={{
-                width: "clamp(320px, 30vw, 480px)",
-                height: "clamp(320px, 30vw, 480px)",
+                width: "min(580px, 42vw)",
+                height: "min(580px, 42vw)",
+                minWidth: "320px",
+                minHeight: "320px",
                 borderRadius: "50%",
+                flexShrink: 0,
               }}
             >
               <Image
@@ -74,7 +77,7 @@ export default function Intro() {
                 alt="Luxury garden design"
                 fill
                 className="object-cover"
-                sizes="(max-width: 1024px) 100vw, 480px"
+                sizes="(max-width: 1024px) 100vw, 580px"
               />
             </div>
           </div>

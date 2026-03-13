@@ -145,8 +145,48 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ============================================
-   Navigation
+   Navigation — Responsive (using media queries for reliability)
    ============================================ */
+
+/* Desktop nav: hidden on mobile, flex on desktop */
+.desktop-nav {
+  display: none;
+}
+@media (min-width: 1024px) {
+  .desktop-nav {
+    display: flex;
+  }
+}
+
+/* Desktop CTA: hidden on mobile, inline-flex on desktop */
+.desktop-cta {
+  display: none;
+}
+@media (min-width: 1024px) {
+  .desktop-cta {
+    display: inline-flex;
+  }
+}
+
+/* Mobile brand: visible on mobile, hidden on desktop */
+.mobile-brand {
+  display: block;
+}
+@media (min-width: 1024px) {
+  .mobile-brand {
+    display: none;
+  }
+}
+
+/* Mobile hamburger: visible on mobile, hidden on desktop */
+.mobile-hamburger {
+  display: flex;
+}
+@media (min-width: 1024px) {
+  .mobile-hamburger {
+    display: none;
+  }
+}
 
 .nav-link {
   font-family: var(--font-body);

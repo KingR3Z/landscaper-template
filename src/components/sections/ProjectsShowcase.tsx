@@ -29,7 +29,7 @@ export default function ProjectsShowcase() {
   };
 
   return (
-    <section ref={sectionRef} style={{ background: "var(--cream)" }} className="section-padding">
+    <section ref={sectionRef} style={{ background: "var(--white)" }} className="section-padding">
       <div style={{ padding: "0 clamp(24px, 3vw, 40px)" }}>
         {/* Heading */}
         <h2
@@ -52,7 +52,7 @@ export default function ProjectsShowcase() {
               key={`${project.slug}-${startIndex}-${i}`}
               href={`/our-gardens/${project.slug}`}
               className="reveal-item group relative block overflow-hidden"
-              style={{ aspectRatio: "4/3", borderRadius: "4px" }}
+              style={{ aspectRatio: "4/3", borderRadius: "16px" }}
             >
               <Image
                 src={project.image}
