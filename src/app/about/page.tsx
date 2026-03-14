@@ -23,7 +23,7 @@ export default function AboutPage() {
 
   return (
     <InnerPageLayout>
-      {/* About Header — dark sage bg left + image right (NO PageHero) */}
+      {/* About Header — dark sage bg left + image right */}
       <section ref={headerRef} style={{ marginTop: "70px" }}>
         <div className="grid grid-cols-1 lg:grid-cols-2" style={{ minHeight: "70vh" }}>
           <div
@@ -32,8 +32,13 @@ export default function AboutPage() {
           >
             <div>
               <p
-                className="reveal-item text-xs tracking-[0.2em] mb-4"
-                style={{ color: "rgba(255,255,255,0.7)", textTransform: "uppercase" }}
+                className="reveal-item tracking-[0.2em] mb-4"
+                style={{
+                  color: "rgba(255,255,255,0.7)",
+                  textTransform: "uppercase",
+                  fontSize: "clamp(10px, 1vw, 13px)",
+                  fontWeight: 400,
+                }}
               >
                 {aboutHeaderData.overline}
               </p>
@@ -73,48 +78,32 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Core Values — 3 cards */}
+      {/* Core Values — 3 outlined cards (no icons, matching competitor) */}
       <section ref={valuesRef} className="bg-white section-padding">
         <div className="container-custom">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {coreValues.map((value, i) => (
               <div
                 key={i}
-                className="reveal-item text-center"
-                style={{ padding: "clamp(24px, 3vw, 48px)" }}
+                className="reveal-item"
+                style={{
+                  padding: "clamp(28px, 3vw, 40px)",
+                  border: "1px solid #e8e8e8",
+                  borderRadius: "8px",
+                }}
               >
-                <div
-                  className="mx-auto mb-6 flex items-center justify-center"
-                  style={{
-                    width: "64px",
-                    height: "64px",
-                    borderRadius: "50%",
-                    background: "#D5DDD1",
-                  }}
-                >
-                  {value.icon === "shield" && (
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--charcoal)" strokeWidth="1.5">
-                      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                    </svg>
-                  )}
-                  {value.icon === "lightbulb" && (
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--charcoal)" strokeWidth="1.5">
-                      <path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z" />
-                    </svg>
-                  )}
-                  {value.icon === "heart" && (
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--charcoal)" strokeWidth="1.5">
-                      <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
-                    </svg>
-                  )}
-                </div>
                 <h3
-                  className="font-display mb-4"
-                  style={{ fontSize: "clamp(18px, 1.5vw, 22px)", fontWeight: 400, color: "var(--charcoal)" }}
+                  className="font-display mb-5"
+                  style={{
+                    fontSize: "clamp(20px, 1.5vw, 26px)",
+                    fontWeight: 300,
+                    fontStyle: "italic",
+                    color: "var(--charcoal)",
+                  }}
                 >
                   {value.title}
                 </h3>
-                <p className="text-sm leading-relaxed" style={{ color: "var(--warm-grey)" }}>
+                <p className="leading-relaxed" style={{ color: "var(--warm-grey)", fontSize: "15px" }}>
                   {value.description}
                 </p>
               </div>
@@ -123,33 +112,32 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Design Director — image left + sage bg right */}
-      <section ref={directorRef}>
+      {/* Design Director — sage bg full-width, text LEFT + portrait RIGHT (matching competitor) */}
+      <section ref={directorRef} style={{ background: "#C5CEC0" }}>
         <div className="grid grid-cols-1 lg:grid-cols-2" style={{ minHeight: "600px" }}>
-          <div className="reveal-item relative" style={{ minHeight: "400px" }}>
-            <Image
-              src={directorData.image}
-              alt={directorData.name}
-              fill
-              className="object-cover"
-              sizes="(max-width: 1024px) 100vw, 50vw"
-            />
-          </div>
           <div
             className="flex items-center"
-            style={{ background: "#D5DDD1", padding: "clamp(40px, 5vw, 80px)" }}
+            style={{ padding: "clamp(40px, 5vw, 80px)" }}
           >
             <div>
-              <p
-                className="reveal-item text-xs tracking-[0.2em] mb-3"
-                style={{ color: "var(--warm-grey)", textTransform: "uppercase" }}
-              >
-                DESIGN DIRECTOR
-              </p>
               <h2
-                className="reveal-item font-display mb-6"
+                className="reveal-item"
                 style={{
-                  fontSize: "clamp(26px, 3vw, 38px)",
+                  fontSize: "clamp(36px, 4vw, 56px)",
+                  fontWeight: 300,
+                  letterSpacing: "0.15em",
+                  textTransform: "uppercase",
+                  color: "var(--charcoal)",
+                  lineHeight: 1.2,
+                  marginBottom: "12px",
+                }}
+              >
+                DESIGN<br />DIRECTOR
+              </h2>
+              <h3
+                className="reveal-item font-display mb-8"
+                style={{
+                  fontSize: "clamp(24px, 2.5vw, 36px)",
                   fontWeight: 300,
                   fontStyle: "italic",
                   color: "var(--charcoal)",
@@ -157,7 +145,7 @@ export default function AboutPage() {
                 }}
               >
                 {directorData.name}
-              </h2>
+              </h3>
               {directorData.bio.map((p, i) => (
                 <p
                   key={i}
@@ -174,7 +162,7 @@ export default function AboutPage() {
                   style={{
                     padding: "12px 28px",
                     background: "var(--sage)",
-                    color: "var(--charcoal)",
+                    color: "#FFFFFF",
                     fontFamily: "var(--font-body)",
                     fontSize: "14px",
                     fontWeight: 400,
@@ -188,51 +176,56 @@ export default function AboutPage() {
               </div>
             </div>
           </div>
+          <div className="reveal-item relative" style={{ minHeight: "400px" }}>
+            <Image
+              src={directorData.image}
+              alt={directorData.name}
+              fill
+              className="object-cover"
+              sizes="(max-width: 1024px) 100vw, 50vw"
+            />
+          </div>
         </div>
       </section>
 
-      {/* Our Mission — bg image + sage overlay left */}
-      <section ref={missionRef} className="relative" style={{ minHeight: "600px" }}>
-        <Image
-          src={missionData.image}
-          alt="Our mission"
-          fill
-          className="object-cover"
-          sizes="100vw"
-        />
-        <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2" style={{ minHeight: "600px" }}>
-          <div
-            className="flex items-center"
+      {/* Elevating Outdoor Living — full-width dark sage (matching competitor) */}
+      <section ref={missionRef} style={{ background: "#8A9685", padding: "clamp(60px, 8vw, 120px) 0" }}>
+        <div className="container-custom" style={{ maxWidth: "700px" }}>
+          <h2
+            className="reveal-item"
             style={{
-              background: "rgba(213, 221, 209, 0.92)",
-              padding: "clamp(40px, 5vw, 80px)",
+              fontSize: "clamp(32px, 3.5vw, 48px)",
+              fontWeight: 300,
+              letterSpacing: "0.15em",
+              textTransform: "uppercase",
+              color: "#FFFFFF",
+              lineHeight: 1.25,
+              marginBottom: "48px",
             }}
           >
-            <div>
-              <h2
-                className="reveal-item font-display mb-8"
-                style={{
-                  fontSize: "clamp(28px, 3vw, 42px)",
-                  fontWeight: 300,
-                  fontStyle: "italic",
-                  color: "var(--charcoal)",
-                  lineHeight: 1.3,
-                }}
-              >
-                {missionData.heading}
-              </h2>
-              {missionData.paragraphs.map((p, i) => (
-                <p
-                  key={i}
-                  className="reveal-item mb-5 leading-relaxed"
-                  style={{ color: "var(--warm-grey)", fontSize: "15px" }}
-                >
-                  {p}
-                </p>
-              ))}
-            </div>
-          </div>
-          <div>{/* Right side shows the bg image through */}</div>
+            ELEVATING<br />OUTDOOR<br />LIVING
+          </h2>
+          <h3
+            className="reveal-item font-display mb-8"
+            style={{
+              fontSize: "clamp(20px, 2vw, 28px)",
+              fontWeight: 300,
+              fontStyle: "italic",
+              color: "#FFFFFF",
+              lineHeight: 1.3,
+            }}
+          >
+            {missionData.heading}
+          </h3>
+          {missionData.paragraphs.map((p, i) => (
+            <p
+              key={i}
+              className="reveal-item mb-5 leading-relaxed"
+              style={{ color: "rgba(255,255,255,0.85)", fontSize: "15px" }}
+            >
+              {p}
+            </p>
+          ))}
         </div>
       </section>
 
@@ -258,8 +251,8 @@ export default function AboutPage() {
                 className="reveal-item flex items-center justify-center"
                 style={{
                   height: "100px",
-                  background: "var(--cream)",
-                  borderRadius: "8px",
+                  border: "1px solid #e8e8e8",
+                  borderRadius: "12px",
                   padding: "20px",
                 }}
               >
