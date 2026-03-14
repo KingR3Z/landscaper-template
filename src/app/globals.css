@@ -22,7 +22,7 @@
   --font-body: var(--font-dm-sans), "DM Sans", system-ui, sans-serif;
 
   /* Spacing */
-  --container-max: 1280px;
+  --container-max: 1600px;
   --container-padding: clamp(24px, 4vw, 64px);
   --section-padding: clamp(60px, 8vw, 120px);
 
