@@ -1,21 +1,19 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import InnerPageLayout from "@/components/layout/InnerPageLayout";
-import PageHero from "@/components/sections/PageHero";
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-
-gsap.registerPlugin(ScrollTrigger);
+import InnerPageLayout from "@/components/layout/InnerPageLayout";
+import { useReveal } from "@/hooks/useReveal";
 
 const newsArticles = [
   {
     title: "RHS Chelsea Flower Show 2026: Our Preview",
     excerpt: "As the Chelsea Flower Show approaches, we reflect on this year's themes and what trends we're seeing in luxury garden design for the season ahead.",
     date: "15 February 2026",
-    category: "Events",
+    author: "James Hartwood",
+    readTime: "4 min read",
+    category: "Garden Design Trends",
     image: "/images/projects/project-01.jpg",
     slug: "chelsea-2026-preview",
   },
@@ -23,7 +21,9 @@ const newsArticles = [
     title: "The Art of Winter Garden Structure",
     excerpt: "A well-designed garden reveals its true architecture in winter. Discover how we use evergreen structure, sculptural planting, and hardscape to create year-round beauty.",
     date: "28 January 2026",
-    category: "Design Insight",
+    author: "James Hartwood",
+    readTime: "5 min read",
+    category: "Garden Design Trends",
     image: "/images/projects/project-03.jpg",
     slug: "winter-garden-structure",
   },
@@ -31,161 +31,204 @@ const newsArticles = [
     title: "Project Spotlight: Kensington Courtyard",
     excerpt: "A behind-the-scenes look at our latest completed project — a compact London courtyard transformed into a private urban retreat with layered planting and bespoke stonework.",
     date: "12 January 2026",
-    category: "Projects",
+    author: "James Hartwood",
+    readTime: "3 min read",
+    category: "Garden Design Trends",
     image: "/images/projects/project-05.jpg",
     slug: "kensington-courtyard-spotlight",
   },
   {
-    title: "Best of Houzz 2026: Design & Service",
-    excerpt: "We're proud to announce that Hartwood Landscapes has been awarded Best of Houzz 2026 for both Design and Service — reflecting our ongoing commitment to excellence.",
-    date: "5 January 2026",
-    category: "Awards",
+    title: "Autumn Garden Maintenance Tips",
+    excerpt: "Essential autumn maintenance tasks to protect your garden through winter and set the stage for a beautiful spring. From mulching to pruning, here is our expert guide.",
+    date: "18 October 2025",
+    author: "James Hartwood",
+    readTime: "4 min read",
+    category: "Garden Maintenance",
     image: "/images/projects/project-07.jpg",
-    slug: "best-of-houzz-2026",
+    slug: "autumn-maintenance-tips",
   },
   {
     title: "Planting for Pollinators: A Designer's Guide",
     excerpt: "How we integrate pollinator-friendly planting into our luxury garden designs without compromising on aesthetics — because ecological responsibility and beauty aren't mutually exclusive.",
     date: "18 December 2025",
-    category: "Sustainability",
+    author: "James Hartwood",
+    readTime: "4 min read",
+    category: "Garden Design Trends",
     image: "/images/projects/project-02.jpg",
     slug: "planting-for-pollinators",
   },
   {
-    title: "Material Palette: Natural Stone in Garden Design",
-    excerpt: "From York stone to Portuguese limestone, we explore the materials that give our gardens their distinctive tactile quality and enduring character.",
-    date: "2 December 2025",
-    category: "Design Insight",
+    title: "Garden Maintenance: Spring Preparation",
+    excerpt: "A comprehensive guide to preparing your garden for the growing season. From soil health to early planting, everything you need to know for a stunning spring garden.",
+    date: "23 May 2025",
+    author: "James Hartwood",
+    readTime: "3 min read",
+    category: "Garden Maintenance",
     image: "/images/projects/project-04.jpg",
-    slug: "natural-stone-garden-design",
+    slug: "spring-garden-preparation",
   },
 ];
 
-export default function NewsPage() {
-  const gridRef = useRef<HTMLDivElement>(null);
+const categories = ["All Posts", "Garden Design Trends", "Garden Maintenance"];
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      if (gridRef.current) {
-        gsap.fromTo(
-          gridRef.current.querySelectorAll(".news-card"),
-          { opacity: 0, y: 40 },
-          {
-            opacity: 1, y: 0, stagger: 0.1, duration: 0.7, ease: "power2.out",
-            scrollTrigger: { trigger: gridRef.current, start: "top 80%" },
-          }
-        );
-      }
-    });
-    return () => ctx.revert();
-  }, []);
+export default function NewsPage() {
+  const [activeCategory, setActiveCategory] = useState("All Posts");
+  const gridRef = useReveal(".reveal-item");
+  const ctaRef = useReveal(".reveal-item");
+
+  const filteredArticles = activeCategory === "All Posts"
+    ? newsArticles
+    : newsArticles.filter((a) => a.category === activeCategory);
 
   return (
     <InnerPageLayout>
-      <PageHero
-        title="News & Insights"
-        subtitle="Design thinking, project stories, and industry updates"
-        image="/images/projects/project-06.jpg"
-        compact
-      />
-
-      {/* Featured Article */}
-      <section className="bg-white section-padding">
-        <div className="container-custom">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="relative aspect-[4/3] overflow-hidden img-hover-zoom">
-              <Image
-                src={newsArticles[0].image}
-                alt={newsArticles[0].title}
-                fill
-                className="object-cover"
-                sizes="(max-width: 1024px) 100vw, 50vw"
-              />
-            </div>
-            <div>
-              <span
-                className="text-xs tracking-[0.15em] mb-3 block"
-                style={{ color: "var(--sage-dark)" }}
-              >
-                {newsArticles[0].category.toUpperCase()} — {newsArticles[0].date.toUpperCase()}
-              </span>
-              <h2
-                className="font-display mb-4"
-                style={{ fontSize: "clamp(26px, 3vw, 38px)", fontWeight: 400, color: "var(--charcoal)", lineHeight: 1.3 }}
-              >
-                {newsArticles[0].title}
-              </h2>
-              <p className="leading-relaxed mb-6" style={{ color: "var(--warm-grey)", fontSize: "15px" }}>
-                {newsArticles[0].excerpt}
-              </p>
-              <Link href={`/news/${newsArticles[0].slug}`} className="btn-secondary">
-                Read Article <span>→</span>
-              </Link>
-            </div>
-          </div>
+      {/* Filter Tabs — no hero, starts right at navigation level */}
+      <div style={{ marginTop: "70px" }}>
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: `repeat(${categories.length}, 1fr)`,
+            borderBottom: "1px solid #e8e6e1",
+          }}
+        >
+          {categories.map((cat, i) => (
+            <button
+              key={i}
+              onClick={() => setActiveCategory(cat)}
+              className="py-5 text-center transition-all duration-300"
+              style={{
+                fontSize: "clamp(11px, 1vw, 14px)",
+                letterSpacing: "0.15em",
+                fontWeight: 400,
+                fontFamily: "var(--font-body)",
+                color: cat === activeCategory ? "var(--charcoal)" : "var(--warm-grey)",
+                background: cat === activeCategory ? "#D5DDD1" : "transparent",
+                border: "none",
+                borderRight: i < categories.length - 1 ? "1px solid #e8e6e1" : "none",
+                cursor: "pointer",
+                textTransform: "uppercase" as const,
+                padding: "20px 8px",
+              }}
+            >
+              {cat}
+            </button>
+          ))}
         </div>
-      </section>
+      </div>
 
-      {/* Articles Grid */}
-      <section style={{ background: "var(--cream)" }} className="section-padding">
-        <div className="container-custom">
-          <h2
-            className="font-display mb-10"
-            style={{ fontSize: "clamp(24px, 2.5vw, 34px)", fontWeight: 400, color: "var(--charcoal)" }}
-          >
-            Recent Articles
-          </h2>
-          <div ref={gridRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {newsArticles.slice(1).map((article, i) => (
-              <Link
-                key={i}
-                href={`/news/${article.slug}`}
-                className="news-card group block"
-                style={{ opacity: 0 }}
-              >
-                <div className="relative aspect-[3/2] overflow-hidden mb-4 img-hover-zoom">
-                  <Image
-                    src={article.image}
-                    alt={article.title}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  />
-                </div>
+      {/* Featured Article — first article large */}
+      {filteredArticles.length > 0 && (
+        <section className="bg-white section-padding">
+          <div className="container-custom">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              <div className="relative aspect-[4/3] overflow-hidden img-hover-zoom">
+                <Image
+                  src={filteredArticles[0].image}
+                  alt={filteredArticles[0].title}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                />
+              </div>
+              <div>
                 <span
-                  className="text-xs tracking-[0.15em] mb-2 block"
+                  className="text-xs tracking-[0.15em] mb-3 block"
                   style={{ color: "var(--sage-dark)" }}
                 >
-                  {article.category.toUpperCase()}
+                  {filteredArticles[0].category.toUpperCase()}
                 </span>
-                <h3
-                  className="font-display text-lg mb-2 group-hover:opacity-70 transition-opacity duration-300"
-                  style={{ color: "var(--charcoal)", lineHeight: 1.3 }}
+                <h2
+                  className="font-display mb-4"
+                  style={{ fontSize: "clamp(26px, 3vw, 38px)", fontWeight: 400, color: "var(--charcoal)", lineHeight: 1.3 }}
                 >
-                  {article.title}
-                </h3>
-                <p className="text-sm leading-relaxed mb-2" style={{ color: "var(--warm-grey)" }}>
-                  {article.excerpt}
+                  {filteredArticles[0].title}
+                </h2>
+                <p className="leading-relaxed mb-4" style={{ color: "var(--warm-grey)", fontSize: "15px" }}>
+                  {filteredArticles[0].excerpt}
                 </p>
-                <span className="text-xs" style={{ color: "var(--warm-grey)" }}>
-                  {article.date}
-                </span>
-              </Link>
-            ))}
+                <div className="flex items-center gap-4 text-xs" style={{ color: "var(--warm-grey)" }}>
+                  <span>{filteredArticles[0].author}</span>
+                  <span>·</span>
+                  <span>{filteredArticles[0].date}</span>
+                  <span>·</span>
+                  <span>{filteredArticles[0].readTime}</span>
+                </div>
+                <div className="mt-6">
+                  <Link href={`/news/${filteredArticles[0].slug}`} className="btn-secondary">
+                    Read Article <span>→</span>
+                  </Link>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
+
+      {/* Articles Grid */}
+      {filteredArticles.length > 1 && (
+        <section ref={gridRef} style={{ background: "var(--cream)" }} className="section-padding">
+          <div className="container-custom">
+            <h2
+              className="reveal-item font-display mb-10"
+              style={{ fontSize: "clamp(24px, 2.5vw, 34px)", fontWeight: 400, color: "var(--charcoal)" }}
+            >
+              Recent Articles
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {filteredArticles.slice(1).map((article, i) => (
+                <Link
+                  key={i}
+                  href={`/news/${article.slug}`}
+                  className="reveal-item group block"
+                >
+                  <div className="relative aspect-[3/2] overflow-hidden mb-4 img-hover-zoom">
+                    <Image
+                      src={article.image}
+                      alt={article.title}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    />
+                  </div>
+                  <span
+                    className="text-xs tracking-[0.15em] mb-2 block"
+                    style={{ color: "var(--sage-dark)" }}
+                  >
+                    {article.category.toUpperCase()}
+                  </span>
+                  <h3
+                    className="font-display text-lg mb-2 group-hover:opacity-70 transition-opacity duration-300"
+                    style={{ color: "var(--charcoal)", lineHeight: 1.3 }}
+                  >
+                    {article.title}
+                  </h3>
+                  <p className="text-sm leading-relaxed mb-3" style={{ color: "var(--warm-grey)" }}>
+                    {article.excerpt}
+                  </p>
+                  <div className="flex items-center gap-3 text-xs" style={{ color: "var(--warm-grey)" }}>
+                    <span>{article.author}</span>
+                    <span>·</span>
+                    <span>{article.date}</span>
+                    <span>·</span>
+                    <span>{article.readTime}</span>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Newsletter CTA */}
-      <section className="bg-white section-padding">
+      <section ref={ctaRef} className="bg-white section-padding">
         <div className="container-custom text-center">
           <h2
-            className="font-display mb-4"
+            className="reveal-item font-display mb-4"
             style={{ fontSize: "clamp(26px, 3vw, 38px)", fontWeight: 400, color: "var(--charcoal)", lineHeight: 1.3 }}
           >
             Stay Inspired
           </h2>
-          <p className="mb-8 mx-auto max-w-md" style={{ color: "var(--warm-grey)", fontSize: "15px" }}>
+          <p className="reveal-item mb-8 mx-auto max-w-md" style={{ color: "var(--warm-grey)", fontSize: "15px" }}>
             Subscribe to receive design insights, project stories, and seasonal garden advice.
           </p>
           <form
@@ -195,8 +238,8 @@ export default function NewsPage() {
             <input
               type="email"
               placeholder="Your email address"
-              className="flex-1 px-5 py-3 text-sm rounded-full border focus:outline-none focus:ring-2"
-              style={{ borderColor: "var(--sage)", focusRingColor: "var(--sage-dark)" } as React.CSSProperties}
+              className="flex-1 px-5 py-3 text-sm rounded-full border focus:outline-none"
+              style={{ borderColor: "var(--sage)" }}
             />
             <button
               type="submit"

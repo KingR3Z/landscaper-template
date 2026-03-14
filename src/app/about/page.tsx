@@ -1,50 +1,26 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Image from "next/image";
+import Link from "next/link";
 import InnerPageLayout from "@/components/layout/InnerPageLayout";
 import PageHero from "@/components/sections/PageHero";
-import Image from "next/image";
-
-gsap.registerPlugin(ScrollTrigger);
-
-const teamMembers = [
-  { name: "James Hartwood", role: "Design Director", image: "/images/projects/project-01.jpg" },
-  { name: "Eleanor Vane", role: "Senior Landscape Architect", image: "/images/projects/project-02.jpg" },
-  { name: "Marcus Chen", role: "Project Manager", image: "/images/projects/project-03.jpg" },
-  { name: "Sophie Laurent", role: "Planting Designer", image: "/images/projects/project-04.jpg" },
-];
+import { useReveal } from "@/hooks/useReveal";
+import {
+  aboutHeaderData,
+  coreValues,
+  directorData,
+  missionData,
+  partnersData,
+  awardsData,
+} from "@/data/about";
 
 export default function AboutPage() {
-  const storyRef = useRef<HTMLDivElement>(null);
-  const teamRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      if (storyRef.current) {
-        gsap.fromTo(
-          storyRef.current.querySelectorAll(".story-reveal"),
-          { opacity: 0, y: 40 },
-          {
-            opacity: 1, y: 0, stagger: 0.12, duration: 0.8, ease: "power2.out",
-            scrollTrigger: { trigger: storyRef.current, start: "top 75%" },
-          }
-        );
-      }
-      if (teamRef.current) {
-        gsap.fromTo(
-          teamRef.current.querySelectorAll(".team-card"),
-          { opacity: 0, y: 40 },
-          {
-            opacity: 1, y: 0, stagger: 0.1, duration: 0.7, ease: "power2.out",
-            scrollTrigger: { trigger: teamRef.current, start: "top 75%" },
-          }
-        );
-      }
-    });
-    return () => ctx.revert();
-  }, []);
+  const headerRef = useReveal(".reveal-item");
+  const valuesRef = useReveal(".reveal-item");
+  const directorRef = useReveal(".reveal-item");
+  const missionRef = useReveal(".reveal-item");
+  const partnersRef = useReveal(".reveal-item");
+  const awardsRef = useReveal(".reveal-item");
 
   return (
     <InnerPageLayout>
@@ -54,47 +30,98 @@ export default function AboutPage() {
         image="/images/about-landscape.jpg"
       />
 
-      {/* Story */}
-      <section className="bg-white section-padding">
-        <div className="container-custom">
-          <div ref={storyRef} className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-            <h2
-              className="story-reveal font-display"
-              style={{ fontSize: "clamp(28px, 3.5vw, 44px)", fontWeight: 400, color: "var(--charcoal)", lineHeight: 1.2, opacity: 0 }}
-            >
-              Creating gardens that transcend the ordinary
-            </h2>
-            <div className="space-y-5">
-              <p className="story-reveal leading-relaxed" style={{ color: "var(--warm-grey)", fontSize: "15px", opacity: 0 }}>
-                Founded in 2012, Hartwood Landscapes has grown from a small design studio in Kent to one of the South East&apos;s most respected garden design and landscaping firms. Our journey has been driven by a simple belief: every home deserves an extraordinary outdoor space.
+      {/* About Header — sage bg left + image right */}
+      <section ref={headerRef}>
+        <div className="grid grid-cols-1 lg:grid-cols-2" style={{ minHeight: "500px" }}>
+          <div
+            className="flex items-center"
+            style={{ background: "#D5DDD1", padding: "clamp(40px, 5vw, 80px)" }}
+          >
+            <div>
+              <p
+                className="reveal-item text-xs tracking-[0.2em] mb-4"
+                style={{ color: "var(--warm-grey)", textTransform: "uppercase" }}
+              >
+                {aboutHeaderData.overline}
               </p>
-              <p className="story-reveal leading-relaxed" style={{ color: "var(--warm-grey)", fontSize: "15px", opacity: 0 }}>
-                We bring together landscape architects, designers, horticulturists, and skilled craftspeople — each passionate about creating gardens that are as functional as they are beautiful. Our approach blends timeless design principles with contemporary living, ensuring every project feels both fresh and enduring.
-              </p>
-              <p className="story-reveal leading-relaxed" style={{ color: "var(--warm-grey)", fontSize: "15px", opacity: 0 }}>
-                We are proud to be recognised as Best of Houzz winners for both design and service, reflecting our continued commitment to excellence at every stage.
-              </p>
+              <h2
+                className="reveal-item font-display mb-8"
+                style={{
+                  fontSize: "clamp(28px, 3vw, 42px)",
+                  fontWeight: 300,
+                  fontStyle: "italic",
+                  color: "var(--charcoal)",
+                  lineHeight: 1.3,
+                }}
+              >
+                {aboutHeaderData.heading}
+              </h2>
+              {aboutHeaderData.paragraphs.map((p, i) => (
+                <p
+                  key={i}
+                  className="reveal-item mb-5 leading-relaxed"
+                  style={{ color: "var(--warm-grey)", fontSize: "15px" }}
+                >
+                  {p}
+                </p>
+              ))}
             </div>
+          </div>
+          <div className="reveal-item relative" style={{ minHeight: "400px" }}>
+            <Image
+              src={aboutHeaderData.image}
+              alt="Hartwood Landscapes studio"
+              fill
+              className="object-cover"
+              sizes="(max-width: 1024px) 100vw, 50vw"
+            />
           </div>
         </div>
       </section>
 
-      {/* Stats */}
-      <section style={{ background: "var(--forest)" }} className="py-16">
+      {/* Core Values — 3 cards */}
+      <section ref={valuesRef} className="bg-white section-padding">
         <div className="container-custom">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            {[
-              { number: "200+", label: "Projects Completed" },
-              { number: "12", label: "Years Experience" },
-              { number: "35+", label: "Awards Won" },
-              { number: "98%", label: "Client Satisfaction" },
-            ].map((stat, i) => (
-              <div key={i}>
-                <p className="font-display" style={{ fontSize: "clamp(32px, 4vw, 48px)", fontWeight: 400, color: "var(--sage)" }}>
-                  {stat.number}
-                </p>
-                <p className="text-xs tracking-[0.15em] mt-2" style={{ color: "rgba(245, 243, 239, 0.6)" }}>
-                  {stat.label.toUpperCase()}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {coreValues.map((value, i) => (
+              <div
+                key={i}
+                className="reveal-item text-center"
+                style={{ padding: "clamp(24px, 3vw, 48px)" }}
+              >
+                <div
+                  className="mx-auto mb-6 flex items-center justify-center"
+                  style={{
+                    width: "64px",
+                    height: "64px",
+                    borderRadius: "50%",
+                    background: "#D5DDD1",
+                  }}
+                >
+                  {value.icon === "shield" && (
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--charcoal)" strokeWidth="1.5">
+                      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                    </svg>
+                  )}
+                  {value.icon === "lightbulb" && (
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--charcoal)" strokeWidth="1.5">
+                      <path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z" />
+                    </svg>
+                  )}
+                  {value.icon === "heart" && (
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--charcoal)" strokeWidth="1.5">
+                      <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                    </svg>
+                  )}
+                </div>
+                <h3
+                  className="font-display mb-4"
+                  style={{ fontSize: "clamp(18px, 1.5vw, 22px)", fontWeight: 400, color: "var(--charcoal)" }}
+                >
+                  {value.title}
+                </h3>
+                <p className="text-sm leading-relaxed" style={{ color: "var(--warm-grey)" }}>
+                  {value.description}
                 </p>
               </div>
             ))}
@@ -102,29 +129,215 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Team */}
-      <section className="bg-white section-padding">
+      {/* Design Director — image left + sage bg right */}
+      <section ref={directorRef}>
+        <div className="grid grid-cols-1 lg:grid-cols-2" style={{ minHeight: "600px" }}>
+          <div className="reveal-item relative" style={{ minHeight: "400px" }}>
+            <Image
+              src={directorData.image}
+              alt={directorData.name}
+              fill
+              className="object-cover"
+              sizes="(max-width: 1024px) 100vw, 50vw"
+            />
+          </div>
+          <div
+            className="flex items-center"
+            style={{ background: "#D5DDD1", padding: "clamp(40px, 5vw, 80px)" }}
+          >
+            <div>
+              <p
+                className="reveal-item text-xs tracking-[0.2em] mb-3"
+                style={{ color: "var(--warm-grey)", textTransform: "uppercase" }}
+              >
+                DESIGN DIRECTOR
+              </p>
+              <h2
+                className="reveal-item font-display mb-6"
+                style={{
+                  fontSize: "clamp(26px, 3vw, 38px)",
+                  fontWeight: 300,
+                  fontStyle: "italic",
+                  color: "var(--charcoal)",
+                  lineHeight: 1.3,
+                }}
+              >
+                {directorData.name}
+              </h2>
+              {directorData.bio.map((p, i) => (
+                <p
+                  key={i}
+                  className="reveal-item mb-4 leading-relaxed"
+                  style={{ color: "var(--warm-grey)", fontSize: "14px" }}
+                >
+                  {p}
+                </p>
+              ))}
+              <div className="reveal-item mt-6">
+                <Link
+                  href={directorData.cta.href}
+                  className="inline-flex items-center gap-3"
+                  style={{
+                    padding: "12px 28px",
+                    background: "var(--sage)",
+                    color: "var(--charcoal)",
+                    fontFamily: "var(--font-body)",
+                    fontSize: "14px",
+                    fontWeight: 400,
+                    borderRadius: "50px",
+                    textDecoration: "none",
+                    transition: "all 0.3s ease",
+                  }}
+                >
+                  {directorData.cta.label} <span>→</span>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Our Mission — bg image + sage overlay left */}
+      <section ref={missionRef} className="relative" style={{ minHeight: "600px" }}>
+        <Image
+          src={missionData.image}
+          alt="Our mission"
+          fill
+          className="object-cover"
+          sizes="100vw"
+        />
+        <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2" style={{ minHeight: "600px" }}>
+          <div
+            className="flex items-center"
+            style={{
+              background: "rgba(213, 221, 209, 0.92)",
+              padding: "clamp(40px, 5vw, 80px)",
+            }}
+          >
+            <div>
+              <h2
+                className="reveal-item font-display mb-8"
+                style={{
+                  fontSize: "clamp(28px, 3vw, 42px)",
+                  fontWeight: 300,
+                  fontStyle: "italic",
+                  color: "var(--charcoal)",
+                  lineHeight: 1.3,
+                }}
+              >
+                {missionData.heading}
+              </h2>
+              {missionData.paragraphs.map((p, i) => (
+                <p
+                  key={i}
+                  className="reveal-item mb-5 leading-relaxed"
+                  style={{ color: "var(--warm-grey)", fontSize: "15px" }}
+                >
+                  {p}
+                </p>
+              ))}
+            </div>
+          </div>
+          <div>{/* Right side shows the bg image through */}</div>
+        </div>
+      </section>
+
+      {/* Visionary Partners */}
+      <section ref={partnersRef} className="bg-white section-padding">
+        <div className="container-custom text-center">
+          <h2
+            className="reveal-item font-display mb-12"
+            style={{
+              fontSize: "clamp(26px, 3vw, 38px)",
+              fontWeight: 300,
+              fontStyle: "italic",
+              color: "var(--charcoal)",
+              lineHeight: 1.3,
+            }}
+          >
+            {partnersData.heading}
+          </h2>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            {partnersData.partners.map((partner, i) => (
+              <div
+                key={i}
+                className="reveal-item flex items-center justify-center"
+                style={{
+                  height: "100px",
+                  background: "var(--cream)",
+                  borderRadius: "8px",
+                  padding: "20px",
+                }}
+              >
+                <p
+                  className="font-display"
+                  style={{
+                    fontSize: "clamp(14px, 1.2vw, 18px)",
+                    color: "var(--warm-grey)",
+                    fontStyle: "italic",
+                  }}
+                >
+                  {partner.name}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Awards */}
+      <section ref={awardsRef} style={{ background: "var(--cream)" }} className="section-padding">
         <div className="container-custom">
           <h2
-            className="font-display mb-12"
-            style={{ fontSize: "clamp(28px, 3vw, 40px)", fontWeight: 400, color: "var(--charcoal)" }}
+            className="reveal-item font-display mb-12 text-center"
+            style={{
+              fontSize: "clamp(26px, 3vw, 38px)",
+              fontWeight: 300,
+              fontStyle: "italic",
+              color: "var(--charcoal)",
+              lineHeight: 1.3,
+            }}
           >
-            Meet Our Team
+            {awardsData.heading}
           </h2>
-          <div ref={teamRef} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {teamMembers.map((member, i) => (
-              <div key={i} className="team-card" style={{ opacity: 0 }}>
-                <div className="relative aspect-[3/4] overflow-hidden mb-4 img-hover-zoom">
-                  <Image
-                    src={member.image}
-                    alt={member.name}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                  />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {awardsData.awards.map((award, i) => (
+              <div
+                key={i}
+                className="reveal-item flex items-center justify-center"
+                style={{
+                  background: "rgba(44, 44, 44, 0.85)",
+                  borderRadius: "8px",
+                  padding: "clamp(32px, 3vw, 48px)",
+                  textAlign: "center",
+                }}
+              >
+                <div>
+                  <p style={{ color: "var(--gold)", fontSize: "11px", letterSpacing: "0.15em", textTransform: "uppercase" }}>
+                    {award.category}
+                  </p>
+                  <p
+                    className="font-display"
+                    style={{
+                      color: "var(--white)",
+                      fontSize: "clamp(18px, 1.5vw, 24px)",
+                      fontStyle: "italic",
+                      lineHeight: 1.3,
+                      margin: "8px 0",
+                    }}
+                  >
+                    Best of Houzz
+                  </p>
+                  <p style={{ color: "var(--white)", fontSize: "11px", letterSpacing: "0.1em" }}>
+                    Winner
+                  </p>
+                  <p
+                    className="font-display"
+                    style={{ color: "var(--gold)", fontSize: "clamp(28px, 2vw, 36px)", fontWeight: 400, marginTop: "8px" }}
+                  >
+                    {award.year}
+                  </p>
                 </div>
-                <h3 className="font-display text-lg" style={{ color: "var(--charcoal)" }}>{member.name}</h3>
-                <p className="text-sm mt-1" style={{ color: "var(--warm-grey)" }}>{member.role}</p>
               </div>
             ))}
           </div>

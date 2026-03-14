@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import Image from "next/image";
+import Link from "next/link";
 import { heroData } from "@/data/homepage";
 
 export default function Hero() {
@@ -71,6 +72,29 @@ export default function Hero() {
         >
           {heroData.subtitle}
         </p>
+        <div className="mt-8">
+          <Link
+            href="/contact"
+            className="inline-flex items-center gap-3"
+            style={{
+              padding: "14px 32px",
+              background: "rgba(255,255,255,0.15)",
+              backdropFilter: "blur(8px)",
+              color: "var(--white)",
+              fontFamily: "var(--font-body)",
+              fontSize: "13px",
+              fontWeight: 500,
+              letterSpacing: "0.5px",
+              textTransform: "uppercase" as const,
+              borderRadius: "50px",
+              border: "1px solid rgba(255,255,255,0.3)",
+              textDecoration: "none",
+              transition: "all 0.3s ease",
+            }}
+          >
+            Start Now <span>→</span>
+          </Link>
+        </div>
       </div>
 
       {/* Scroll-to-top arrow — bottom right like reference */}

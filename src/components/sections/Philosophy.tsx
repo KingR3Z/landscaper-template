@@ -56,12 +56,21 @@ export default function Philosophy() {
             </div>
           </div>
 
-          {/* Image — right side */}
-          <div className="reveal-item relative">
-            <div className="relative aspect-[3/4] overflow-hidden">
+          {/* Images — right side (two stacked like reference) */}
+          <div className="reveal-item space-y-5">
+            <div className="relative aspect-[4/3] overflow-hidden">
               <Image
                 src={philosophyData.image}
                 alt="Garden design philosophy"
+                fill
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+              />
+            </div>
+            <div className="relative aspect-[4/3] overflow-hidden">
+              <Image
+                src="/images/philosophy-2.jpg"
+                alt="Contemporary courtyard garden"
                 fill
                 className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 50vw"

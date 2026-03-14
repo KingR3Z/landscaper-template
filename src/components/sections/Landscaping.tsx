@@ -25,7 +25,7 @@ export default function Landscaping() {
         {/* Text — right side with cream bg */}
         <div
           className="order-1 lg:order-2 flex items-center"
-          style={{ background: "var(--cream)", padding: "clamp(40px, 5vw, 80px)" }}
+          style={{ background: "#D5DDD1", padding: "clamp(40px, 5vw, 80px)" }}
         >
           <div>
             <h2

@@ -8,51 +8,61 @@ export default function WhyChoose() {
   const sectionRef = useReveal(".reveal-item", 0.1);
 
   return (
-    <section ref={sectionRef} className="relative" style={{ minHeight: "700px" }}>
-      {/* Full-width background image */}
-      <Image
-        src={whyChooseData.image}
-        alt="Why choose Hartwood Landscapes"
-        fill
-        className="object-cover"
-        sizes="100vw"
-      />
-
-      {/* Centered cream card overlay */}
-      <div
-        className="relative z-10 flex items-center justify-center"
-        style={{ minHeight: "700px", padding: "clamp(40px, 6vw, 80px)" }}
-      >
+    <section ref={sectionRef}>
+      <div className="grid grid-cols-1 lg:grid-cols-2" style={{ minHeight: "600px" }}>
+        {/* Left: Sage bg with text */}
         <div
-          className="reveal-item"
-          style={{
-            background: "rgba(249, 247, 244, 0.93)",
-            maxWidth: "680px",
-            width: "100%",
-            padding: "clamp(40px, 5vw, 70px)",
-          }}
+          className="flex items-center"
+          style={{ background: "#D5DDD1", padding: "clamp(40px, 5vw, 80px)" }}
         >
-          <h2
-            className="font-display mb-8"
-            style={{
-              fontSize: "clamp(26px, 3vw, 40px)",
-              fontWeight: 300,
-              fontStyle: "italic",
-              color: "var(--charcoal)",
-              lineHeight: 1.3,
-            }}
-          >
-            {whyChooseData.title}
-          </h2>
-          {whyChooseData.paragraphs.map((p, i) => (
-            <p
-              key={i}
-              className="mb-5 leading-relaxed"
-              style={{ color: "var(--warm-grey)", fontSize: "15px" }}
+          <div>
+            <h2
+              className="reveal-item font-display mb-8"
+              style={{
+                fontSize: "clamp(26px, 3vw, 40px)",
+                fontWeight: 300,
+                fontStyle: "italic",
+                color: "var(--charcoal)",
+                lineHeight: 1.3,
+              }}
             >
-              {p}
+              {whyChooseData.title}
+            </h2>
+            {whyChooseData.paragraphs.map((p, i) => (
+              <p
+                key={i}
+                className="reveal-item mb-5 leading-relaxed"
+                style={{ color: "var(--warm-grey)", fontSize: "15px" }}
+              >
+                {p}
+              </p>
+            ))}
+            <p className="reveal-item mt-6">
+              <a
+                href="tel:01892489923"
+                className="font-display"
+                style={{
+                  color: "var(--charcoal)",
+                  fontSize: "clamp(18px, 2vw, 24px)",
+                  textDecoration: "underline",
+                  textUnderlineOffset: "4px",
+                }}
+              >
+                01892 489 923
+              </a>
             </p>
-          ))}
+          </div>
+        </div>
+
+        {/* Right: Full-height image */}
+        <div className="reveal-item relative" style={{ minHeight: "400px" }}>
+          <Image
+            src={whyChooseData.image}
+            alt="Why choose Hartwood Landscapes"
+            fill
+            className="object-cover"
+            sizes="(max-width: 1024px) 100vw, 50vw"
+          />
         </div>
       </div>
     </section>
