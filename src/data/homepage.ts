@@ -2,7 +2,6 @@ export const heroData = {
   title: "Quality Driveways & Gardens\nBuilt To Last",
   subtitle: "PROFESSIONAL PAVING, PATIOS & LANDSCAPING IN STAFFORDSHIRE",
   image: "/images/hero-bg.jpg",
-  video: "/videos/hero-bg.mp4",
 };
 
 export const introData = {

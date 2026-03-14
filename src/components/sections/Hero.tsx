@@ -11,8 +11,7 @@ export default function Hero() {
   const titleRef = useRef<HTMLHeadingElement>(null);
   const subtitleRef = useRef<HTMLParagraphElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
-  const [videoLoaded, setVideoLoaded] = useState(false);
-  const [videoError, setVideoError] = useState(false);
+  const videoLoaded = false;
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -69,27 +68,7 @@ export default function Hero() {
       className="relative w-full overflow-hidden"
       style={{ height: "calc(100vh - 70px)", marginTop: "70px", minHeight: "500px" }}
     >
-      {/* Background Video (if available) */}
-      {heroData.video && !videoError && (
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          onCanPlay={() => setVideoLoaded(true)}
-          onError={() => setVideoError(true)}
-          className="absolute inset-0 w-full h-full object-cover"
-          style={{
-            opacity: videoLoaded ? 1 : 0,
-            transition: "opacity 1s ease",
-            zIndex: 1,
-          }}
-        >
-          <source src={heroData.video} type="video/mp4" />
-        </video>
-      )}
-
-      {/* Background Image — with Ken Burns animation as fallback or poster */}
+      {/* Background Image — with Ken Burns animation */}
       <div
         className="absolute inset-0 hero-ken-burns"
         style={{
