@@ -44,9 +44,11 @@ export const footerData = {
     heading: "FOLLOW US",
     links: [
       { label: "Instagram", href: "#" },
+      { label: "Youtube", href: "#" },
       { label: "Facebook", href: "#" },
       { label: "Houzz", href: "#" },
       { label: "Pinterest", href: "#" },
+      { label: "Whatsapp", href: "#" },
     ],
   },
   copyright: "2026 Hartwood Landscapes Ltd",

@@ -5,85 +5,168 @@ import { footerData } from "@/data/navigation";
 
 export default function Footer() {
   return (
-    <footer style={{ background: "var(--sage)" }}>
-      <div className="container-custom section-padding">
-        {/* Monogram + Tagline */}
-        <div className="mb-8">
+    <footer style={{ background: "#C1C7BF" }}>
+      <div className="container-custom" style={{ paddingTop: "100px", paddingBottom: "40px" }}>
+        {/* Logo / Monogram */}
+        <div style={{ marginBottom: "0" }}>
           <h2
             className="font-display"
-            style={{ fontSize: "clamp(48px, 5vw, 72px)", fontWeight: 400, color: "var(--charcoal)", letterSpacing: "0.15em" }}
+            style={{
+              fontSize: "clamp(48px, 5vw, 72px)",
+              fontWeight: 400,
+              color: "#2C2713",
+              letterSpacing: "0.15em",
+              lineHeight: 1,
+            }}
           >
             {footerData.logo}
           </h2>
           <p
-            className="mt-2"
-            style={{ fontSize: "12px", fontWeight: 500, color: "var(--charcoal)", letterSpacing: "0.25em", textTransform: "uppercase" }}
+            style={{
+              fontSize: "12px",
+              fontWeight: 500,
+              color: "#2C2713",
+              letterSpacing: "0.25em",
+              textTransform: "uppercase",
+              marginTop: "12px",
+            }}
           >
             {footerData.tagline}
           </p>
           <p
-            className="mt-1"
-            style={{ fontSize: "10px", fontWeight: 400, color: "var(--forest)", letterSpacing: "0.15em" }}
+            style={{
+              fontSize: "10px",
+              fontWeight: 400,
+              color: "#2C2713",
+              letterSpacing: "0.15em",
+              marginTop: "6px",
+              opacity: 0.7,
+            }}
           >
             {footerData.subtitle}
           </p>
         </div>
 
-        {/* Thin separator line */}
-        <hr style={{ border: "none", borderTop: "1px solid rgba(44, 44, 44, 0.2)", margin: "0 0 40px 0" }} />
+        {/* Divider — flush against logo bottom */}
+        <hr
+          style={{
+            border: "none",
+            borderTop: "1px solid #2A2C29",
+            margin: "0",
+            marginTop: "20px",
+          }}
+        />
 
-        {/* Footer Grid — 4 columns matching reference */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
-          {/* Contact */}
+        {/* Footer Grid */}
+        <div
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4"
+          style={{ gap: "clamp(32px, 5vw, 80px)", marginTop: "clamp(60px, 6vw, 97px)" }}
+        >
+          {/* Column 1: GET IN TOUCH */}
           <div>
             <h3
-              className="text-xs font-semibold mb-6"
-              style={{ color: "var(--charcoal)", letterSpacing: "0.2em", textTransform: "uppercase" }}
+              style={{
+                fontSize: "16px",
+                fontWeight: 400,
+                color: "#2C2713",
+                letterSpacing: "normal",
+                marginBottom: "clamp(30px, 4vw, 59px)",
+              }}
             >
               {footerData.contact.heading}
             </h3>
-            <div className="space-y-1">
+            <div style={{ lineHeight: "22.4px" }}>
               {footerData.contact.address.map((line, i) => (
-                <p key={i} className="text-sm" style={{ color: "var(--charcoal)", opacity: 0.8 }}>
+                <p
+                  key={i}
+                  style={{
+                    fontSize: "14px",
+                    fontWeight: 400,
+                    color: "#000000",
+                    lineHeight: "22.4px",
+                    margin: 0,
+                  }}
+                >
                   {line}
                 </p>
               ))}
             </div>
-            <p className="text-sm mt-4" style={{ color: "var(--charcoal)", opacity: 0.8, textDecoration: "underline" }}>
-              {footerData.contact.phone}
-            </p>
-            <p className="text-sm" style={{ color: "var(--charcoal)", opacity: 0.8, textDecoration: "underline" }}>
-              {footerData.contact.email}
-            </p>
+            <div style={{ marginTop: "clamp(24px, 3vw, 47px)" }}>
+              <a
+                href={`tel:${footerData.contact.phone.replace(/\s/g, "")}`}
+                style={{
+                  display: "block",
+                  fontSize: "14px",
+                  fontWeight: 400,
+                  color: "#000000",
+                  lineHeight: "22.4px",
+                  textDecoration: "underline",
+                  textUnderlineOffset: "3px",
+                }}
+              >
+                {footerData.contact.phone}
+              </a>
+              <a
+                href={`mailto:${footerData.contact.email}`}
+                style={{
+                  display: "block",
+                  fontSize: "14px",
+                  fontWeight: 400,
+                  color: "#000000",
+                  lineHeight: "22.4px",
+                  textDecoration: "underline",
+                  textUnderlineOffset: "3px",
+                }}
+              >
+                {footerData.contact.email}
+              </a>
+            </div>
           </div>
 
-          {/* Menu */}
+          {/* Column 2: MENU */}
           <div>
             <h3
-              className="text-xs font-semibold mb-6"
-              style={{ color: "var(--charcoal)", letterSpacing: "0.2em", textTransform: "uppercase" }}
+              style={{
+                fontSize: "16px",
+                fontWeight: 400,
+                color: "#2C2713",
+                letterSpacing: "normal",
+                marginBottom: "clamp(30px, 4vw, 59px)",
+              }}
             >
               {footerData.menu.heading}
             </h3>
-            <nav className="space-y-2">
+            <nav style={{ lineHeight: "22.4px" }}>
               {footerData.menu.links.map((link) => (
                 <Link
                   key={link.label}
                   href={link.href}
-                  className="block text-sm hover:opacity-60 transition-opacity"
-                  style={{ color: "var(--charcoal)", opacity: 0.8, textDecoration: "none" }}
+                  className="block hover:opacity-60 transition-opacity"
+                  style={{
+                    fontSize: "14px",
+                    fontWeight: 400,
+                    color: "#000000",
+                    lineHeight: "22.4px",
+                    textDecoration: "none",
+                  }}
                 >
                   {link.label}
                 </Link>
               ))}
             </nav>
-            <div className="mt-6 space-y-2">
+            <div style={{ marginTop: "clamp(24px, 3vw, 45px)" }}>
               {footerData.menu.legal.map((link) => (
                 <Link
                   key={link.label}
                   href={link.href}
-                  className="block text-xs hover:opacity-60 transition-opacity"
-                  style={{ color: "var(--charcoal)", opacity: 0.6, textDecoration: "none" }}
+                  className="block hover:opacity-60 transition-opacity"
+                  style={{
+                    fontSize: "14px",
+                    fontWeight: 400,
+                    color: "#000000",
+                    lineHeight: "22.4px",
+                    textDecoration: "none",
+                  }}
                 >
                   {link.label}
                 </Link>
@@ -91,21 +174,32 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Socials */}
+          {/* Column 3: FOLLOW US */}
           <div>
             <h3
-              className="text-xs font-semibold mb-6"
-              style={{ color: "var(--charcoal)", letterSpacing: "0.2em", textTransform: "uppercase" }}
+              style={{
+                fontSize: "16px",
+                fontWeight: 400,
+                color: "#2C2713",
+                letterSpacing: "normal",
+                marginBottom: "clamp(30px, 4vw, 59px)",
+              }}
             >
               {footerData.socials.heading}
             </h3>
-            <nav className="space-y-2">
+            <nav style={{ lineHeight: "22.4px" }}>
               {footerData.socials.links.map((link) => (
                 <a
                   key={link.label}
                   href={link.href}
-                  className="block text-sm hover:opacity-60 transition-opacity"
-                  style={{ color: "var(--charcoal)", opacity: 0.8, textDecoration: "none" }}
+                  className="block hover:opacity-60 transition-opacity"
+                  style={{
+                    fontSize: "14px",
+                    fontWeight: 400,
+                    color: "#000000",
+                    lineHeight: "22.4px",
+                    textDecoration: "none",
+                  }}
                 >
                   {link.label}
                 </a>
@@ -113,55 +207,113 @@ export default function Footer() {
             </nav>
           </div>
 
-          {/* Awards / Badges placeholder */}
+          {/* Column 4: Award Badges */}
           <div>
-            <div className="flex gap-4 flex-wrap justify-center sm:justify-start">
+            <div className="flex gap-5 flex-wrap">
+              {/* Design Badge */}
               <div
-                className="flex items-center justify-center"
                 style={{
-                  width: "130px",
-                  height: "130px",
-                  background: "rgba(44, 44, 44, 0.85)",
+                  width: "198px",
+                  height: "192px",
+                  background: "rgba(44, 44, 44, 0.9)",
                   borderRadius: "4px",
-                  padding: "12px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  padding: "16px",
                 }}
               >
                 <div className="text-center">
-                  <p style={{ color: "var(--gold)", fontSize: "10px", letterSpacing: "0.1em", textTransform: "uppercase" }}>
+                  <p
+                    style={{
+                      color: "#C9A96E",
+                      fontSize: "11px",
+                      letterSpacing: "0.12em",
+                      textTransform: "uppercase",
+                      margin: 0,
+                    }}
+                  >
                     DESIGN
                   </p>
-                  <p className="font-display" style={{ color: "var(--white)", fontSize: "16px", fontStyle: "italic", lineHeight: 1.2, margin: "4px 0" }}>
+                  <p
+                    className="font-display"
+                    style={{
+                      color: "#FFFFFF",
+                      fontSize: "20px",
+                      fontStyle: "italic",
+                      lineHeight: 1.2,
+                      margin: "8px 0 4px",
+                    }}
+                  >
                     Best of Houzz
                   </p>
-                  <p style={{ color: "var(--white)", fontSize: "10px", letterSpacing: "0.05em" }}>
+                  <p style={{ color: "#FFFFFF", fontSize: "12px", letterSpacing: "0.05em", margin: 0 }}>
                     Winner
                   </p>
-                  <p className="font-display" style={{ color: "var(--gold)", fontSize: "22px", fontWeight: 400, marginTop: "4px" }}>
+                  <p
+                    className="font-display"
+                    style={{
+                      color: "#C9A96E",
+                      fontSize: "28px",
+                      fontWeight: 400,
+                      marginTop: "8px",
+                      margin: "8px 0 0",
+                    }}
+                  >
                     2026
                   </p>
                 </div>
               </div>
+
+              {/* Service Badge */}
               <div
-                className="flex items-center justify-center"
                 style={{
-                  width: "130px",
-                  height: "130px",
-                  background: "rgba(44, 44, 44, 0.85)",
+                  width: "198px",
+                  height: "192px",
+                  background: "rgba(44, 44, 44, 0.9)",
                   borderRadius: "4px",
-                  padding: "12px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  padding: "16px",
                 }}
               >
                 <div className="text-center">
-                  <p style={{ color: "var(--gold)", fontSize: "10px", letterSpacing: "0.1em", textTransform: "uppercase" }}>
+                  <p
+                    style={{
+                      color: "#C9A96E",
+                      fontSize: "11px",
+                      letterSpacing: "0.12em",
+                      textTransform: "uppercase",
+                      margin: 0,
+                    }}
+                  >
                     SERVICE
                   </p>
-                  <p className="font-display" style={{ color: "var(--white)", fontSize: "16px", fontStyle: "italic", lineHeight: 1.2, margin: "4px 0" }}>
+                  <p
+                    className="font-display"
+                    style={{
+                      color: "#FFFFFF",
+                      fontSize: "20px",
+                      fontStyle: "italic",
+                      lineHeight: 1.2,
+                      margin: "8px 0 4px",
+                    }}
+                  >
                     Best of Houzz
                   </p>
-                  <p style={{ color: "var(--white)", fontSize: "10px", letterSpacing: "0.05em" }}>
+                  <p style={{ color: "#FFFFFF", fontSize: "12px", letterSpacing: "0.05em", margin: 0 }}>
                     Winner
                   </p>
-                  <p className="font-display" style={{ color: "var(--gold)", fontSize: "22px", fontWeight: 400, marginTop: "4px" }}>
+                  <p
+                    className="font-display"
+                    style={{
+                      color: "#C9A96E",
+                      fontSize: "28px",
+                      fontWeight: 400,
+                      margin: "8px 0 0",
+                    }}
+                  >
                     2026
                   </p>
                 </div>
@@ -171,11 +323,17 @@ export default function Footer() {
         </div>
 
         {/* Copyright */}
-        <div className="mt-16 pt-6" style={{ borderTop: "1px solid rgba(44, 44, 44, 0.15)" }}>
-          <p className="text-xs" style={{ color: "var(--charcoal)", opacity: 0.5 }}>
-            &copy; {footerData.copyright}
-          </p>
-        </div>
+        <p
+          style={{
+            fontSize: "14px",
+            fontWeight: 400,
+            color: "#000000",
+            lineHeight: "22.4px",
+            marginTop: "clamp(40px, 4vw, 60px)",
+          }}
+        >
+          &copy; {footerData.copyright}
+        </p>
       </div>
     </footer>
   );
