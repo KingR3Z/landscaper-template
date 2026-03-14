@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import Image from "next/image";
 import Link from "next/link";
@@ -11,6 +11,8 @@ export default function Hero() {
   const titleRef = useRef<HTMLHeadingElement>(null);
   const subtitleRef = useRef<HTMLParagraphElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
+  const [videoLoaded, setVideoLoaded] = useState(false);
+  const [videoError, setVideoError] = useState(false);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -67,23 +69,52 @@ export default function Hero() {
       className="relative w-full overflow-hidden"
       style={{ height: "calc(100vh - 70px)", marginTop: "70px", minHeight: "500px" }}
     >
-      {/* Background Image */}
-      <Image
-        src={heroData.image}
-        alt="Luxury garden landscape"
-        fill
-        className="object-cover"
-        priority
-        sizes="100vw"
-      />
+      {/* Background Video (if available) */}
+      {heroData.video && !videoError && (
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          onCanPlay={() => setVideoLoaded(true)}
+          onError={() => setVideoError(true)}
+          className="absolute inset-0 w-full h-full object-cover"
+          style={{
+            opacity: videoLoaded ? 1 : 0,
+            transition: "opacity 1s ease",
+            zIndex: 1,
+          }}
+        >
+          <source src={heroData.video} type="video/mp4" />
+        </video>
+      )}
+
+      {/* Background Image — with Ken Burns animation as fallback or poster */}
+      <div
+        className="absolute inset-0 hero-ken-burns"
+        style={{
+          opacity: videoLoaded ? 0 : 1,
+          transition: "opacity 1s ease",
+          zIndex: 0,
+        }}
+      >
+        <Image
+          src={heroData.image}
+          alt="Luxury garden landscape"
+          fill
+          className="object-cover"
+          priority
+          sizes="100vw"
+        />
+      </div>
 
       {/* Dark Overlay */}
-      <div className="absolute inset-0 bg-black/25" />
+      <div className="absolute inset-0 bg-black/25" style={{ zIndex: 2 }} />
 
       {/* Content — bottom-left aligned like reference */}
       <div
         className="absolute inset-0 flex flex-col justify-end"
-        style={{ padding: "0 clamp(60px, 6vw, 120px) clamp(60px, 8vh, 120px)" }}
+        style={{ padding: "0 clamp(60px, 6vw, 120px) clamp(60px, 8vh, 120px)", zIndex: 3 }}
       >
         <h1
           ref={titleRef}
@@ -139,7 +170,7 @@ export default function Hero() {
       {/* Scroll-to-top arrow — bottom right like reference */}
       <div
         className="absolute bottom-6 right-6 w-10 h-10 rounded-full flex items-center justify-center cursor-pointer"
-        style={{ background: "rgba(181, 191, 176, 0.6)", backdropFilter: "blur(4px)" }}
+        style={{ background: "rgba(181, 191, 176, 0.6)", backdropFilter: "blur(4px)", zIndex: 3 }}
       >
         <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="white" strokeWidth="1.5">
           <path d="M7 12V2M2 7l5-5 5 5" />

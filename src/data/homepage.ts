@@ -2,6 +2,7 @@ export const heroData = {
   title: "Luxury Garden Design\nFor Exceptional Homes",
   subtitle: "AWARD-WINNING LUXURY GARDEN DESIGN & LANDSCAPING",
   image: "/images/hero-bg.jpg",
+  video: "/videos/hero-bg.mp4",
 };
 
 export const introData = {
