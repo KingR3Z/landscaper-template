@@ -91,7 +91,7 @@ export default function ContactPage() {
       {/* ═══════════════════════════════════════════
           SECTION 2: CONTACT METHOD CARDS — 3 cards (Email, WhatsApp, Phone)
           ═══════════════════════════════════════════ */}
-      <section ref={methodsRef} style={{ background: "#FFFFFF", paddingTop: "clamp(60px, 8vw, 120px)", paddingBottom: "clamp(40px, 5vw, 60px)" }}>
+      <section ref={methodsRef} style={{ background: "#FFFFFF", paddingTop: "clamp(80px, 10vw, 140px)", paddingBottom: "clamp(60px, 6vw, 80px)" }}>
         <div className="container-custom">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             {contactMethods.map((method, i) => (
@@ -154,10 +154,15 @@ export default function ContactPage() {
         </div>
       </section>
 
+      {/* Divider */}
+      <div className="container-custom" style={{ background: "#FFFFFF" }}>
+        <hr style={{ border: "none", borderTop: "1px solid #E5E7E3", margin: 0 }} />
+      </div>
+
       {/* ═══════════════════════════════════════════
           SECTION 3: INFO CARDS — Find Us / We Are Open / What We Are Up To
           ═══════════════════════════════════════════ */}
-      <section ref={infoRef} style={{ background: "#FFFFFF", paddingTop: "clamp(40px, 5vw, 60px)", paddingBottom: "clamp(40px, 5vw, 60px)" }}>
+      <section ref={infoRef} style={{ background: "#FFFFFF", paddingTop: "clamp(60px, 6vw, 80px)", paddingBottom: "clamp(60px, 6vw, 80px)" }}>
         <div className="container-custom">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             {/* FIND US */}
@@ -304,10 +309,15 @@ export default function ContactPage() {
         </div>
       </section>
 
+      {/* Divider */}
+      <div className="container-custom" style={{ background: "#FFFFFF" }}>
+        <hr style={{ border: "none", borderTop: "1px solid #E5E7E3", margin: 0 }} />
+      </div>
+
       {/* ═══════════════════════════════════════════
           SECTION 4: EXPLORE SERVICES — heading + 4 image cards with pill buttons
           ═══════════════════════════════════════════ */}
-      <section ref={servicesRef} style={{ background: "#FFFFFF", paddingTop: "clamp(60px, 8vw, 120px)", paddingBottom: "clamp(60px, 8vw, 120px)" }}>
+      <section ref={servicesRef} style={{ background: "#FFFFFF", paddingTop: "clamp(80px, 10vw, 140px)", paddingBottom: "clamp(80px, 10vw, 140px)" }}>
         <div className="container-custom">
           <h2
             className="service-reveal reveal-item mb-10"
