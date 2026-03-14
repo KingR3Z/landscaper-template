@@ -108,7 +108,7 @@ export default function Hero() {
         />
       </div>
 
-      {/* Dark Overlay — gradient stronger at bottom for text readability */}
+      {/* Dark Overlay — strong gradient for white text readability */}
       <div
         className="absolute inset-0"
         style={{
@@ -127,24 +127,25 @@ export default function Hero() {
           className="font-display text-white max-w-3xl"
           style={{
             fontSize: "clamp(36px, 4.5vw, 68px)",
-            fontWeight: 400,
+            fontWeight: 300,
             fontStyle: "italic",
             lineHeight: 1.15,
             letterSpacing: "-0.5px",
             whiteSpace: "pre-line",
-            textShadow: "0 2px 30px rgba(0,0,0,0.5), 0 1px 8px rgba(0,0,0,0.3)",
+            color: "#FFFFFF",
+            textShadow: "0 2px 40px rgba(0,0,0,0.6), 0 1px 10px rgba(0,0,0,0.4)",
           }}
         >
           {heroData.title}
         </h1>
         <p
           ref={subtitleRef}
-          className="mt-6 text-white/80 tracking-[0.25em]"
+          className="mt-6 text-white/90 tracking-[0.25em]"
           style={{
             fontSize: "clamp(11px, 1vw, 14px)",
             fontWeight: 400,
             textTransform: "uppercase",
-            textShadow: "0 1px 10px rgba(0,0,0,0.3)",
+            textShadow: "0 1px 15px rgba(0,0,0,0.5)",
             opacity: 0,
           }}
         >
