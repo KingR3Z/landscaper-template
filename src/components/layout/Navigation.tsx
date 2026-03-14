@@ -158,20 +158,26 @@ export default function Navigation() {
 
       {/* Mobile Overlay */}
       <div
-        className={`fixed inset-0 z-40 bg-white transition-transform duration-500 ease-in-out lg:hidden ${
+        className={`fixed inset-0 z-40 transition-transform duration-500 ease-in-out lg:hidden ${
           mobileOpen ? "translate-x-0" : "translate-x-full"
         }`}
-        style={{ paddingTop: "70px" }}
+        style={{ paddingTop: "70px", background: "#f7f6f3" }}
       >
-        <div className="flex flex-col h-full px-8 pt-10 pb-8 overflow-y-auto">
-          <nav className="flex flex-col gap-4">
+        <div className="flex flex-col justify-between h-full" style={{ padding: "clamp(24px, 5vh, 48px) 40px clamp(24px, 4vh, 40px)" }}>
+          {/* Nav Links — spread evenly */}
+          <nav className="flex flex-col justify-between flex-1">
             {mainNav.links.map((link) => (
               <div key={link.label}>
                 <Link
                   href={link.href}
                   onClick={() => setMobileOpen(false)}
                   className="block font-display hover:opacity-60 transition-opacity"
-                  style={{ color: "var(--charcoal)", fontSize: "28px" }}
+                  style={{
+                    color: "var(--charcoal)",
+                    fontSize: "clamp(24px, 4.5vw, 32px)",
+                    fontWeight: 300,
+                    letterSpacing: "-0.01em",
+                  }}
                 >
                   {link.label}
                 </Link>
@@ -183,7 +189,7 @@ export default function Navigation() {
                         href={child.href}
                         onClick={() => setMobileOpen(false)}
                         className="block hover:opacity-60 transition-opacity"
-                        style={{ color: "var(--warm-grey)", fontSize: "16px" }}
+                        style={{ color: "var(--warm-grey)", fontSize: "14px", letterSpacing: "0.02em" }}
                       >
                         {child.label}
                       </Link>
@@ -193,14 +199,25 @@ export default function Navigation() {
               </div>
             ))}
           </nav>
-          <div className="mt-auto pt-8">
+
+          {/* Bottom: CTA + Contact */}
+          <div className="flex flex-col gap-4 shrink-0" style={{ borderTop: "1px solid #e0ded9", paddingTop: "20px", marginTop: "20px" }}>
             <Link
               href={mainNav.cta.href}
               onClick={() => setMobileOpen(false)}
-              className="btn-primary"
+              className="btn-primary w-full justify-center"
+              style={{ textAlign: "center" }}
             >
               {mainNav.cta.label} <span>→</span>
             </Link>
+            <div className="flex items-center justify-between" style={{ fontSize: "12px", color: "var(--warm-grey)" }}>
+              <a href="tel:07470867661" className="hover:opacity-60 transition-opacity" style={{ color: "var(--charcoal)", textDecoration: "none" }}>
+                07470 867661
+              </a>
+              <a href="mailto:sales@gardenanddriveways.co.uk" className="hover:opacity-60 transition-opacity" style={{ color: "var(--charcoal)", textDecoration: "none" }}>
+                sales@gardenanddriveways.co.uk
+              </a>
+            </div>
           </div>
         </div>
       </div>
