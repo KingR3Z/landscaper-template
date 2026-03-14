@@ -14,104 +14,175 @@ import {
 } from "@/data/contact";
 
 export default function ContactPage() {
-  const heroRef = useReveal(".reveal-item");
+  const formRef = useReveal(".reveal-item");
   const cardsRef = useReveal(".reveal-item");
   const servicesRef = useReveal(".reveal-item");
-  const formRef = useReveal(".reveal-item");
 
   return (
     <InnerPageLayout>
-      {/* ─── HERO: Sage left + faded image right ─── */}
-      <section ref={heroRef} style={{ marginTop: "70px" }}>
-        <div className="grid grid-cols-1 lg:grid-cols-2" style={{ minHeight: "85vh" }}>
-          {/* Left — sage background with text content */}
-          <div
-            className="flex flex-col justify-center"
-            style={{ background: "#7A8B7F", padding: "clamp(40px, 5vw, 80px)" }}
-          >
-            <div style={{ maxWidth: "540px" }}>
-              <p
-                className="reveal-item tracking-[0.2em] mb-6"
-                style={{
-                  color: "rgba(255,255,255,0.7)",
-                  textTransform: "uppercase",
-                  fontSize: "12px",
-                  letterSpacing: "0.25em",
-                }}
-              >
-                {contactHeroData.overline}
-              </p>
+      {/* ─── HERO: Full-width sage with text left + form right ─── */}
+      <section
+        ref={formRef}
+        style={{ marginTop: "70px", background: "#7A8B7F", minHeight: "calc(100vh - 70px)" }}
+        className="flex items-center"
+      >
+        <div className="container-custom w-full py-16 lg:py-24">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+            {/* Left: Text */}
+            <div>
               <h1
                 className="reveal-item font-display mb-8"
                 style={{
-                  fontSize: "clamp(28px, 3vw, 42px)",
+                  fontSize: "clamp(30px, 3.5vw, 46px)",
                   fontWeight: 300,
                   fontStyle: "italic",
                   color: "#FFFFFF",
-                  lineHeight: 1.35,
+                  lineHeight: 1.3,
                 }}
               >
-                {contactHeroData.heading}
+                Ready to transform your garden?
               </h1>
               <p
-                className="reveal-item leading-relaxed mb-10"
-                style={{ color: "rgba(255,255,255,0.8)", fontSize: "15px", lineHeight: 1.7 }}
+                className="reveal-item mb-6 leading-relaxed"
+                style={{ color: "rgba(255,255,255,0.85)", fontSize: "15px", lineHeight: 1.8 }}
               >
-                {contactHeroData.text}
+                Our award-winning team is here to shape a garden that reflects your lifestyle, complements your home and offers a refined outdoor living experience for years to come.
               </p>
-
-              {/* Contact methods inline */}
-              <div className="reveal-item space-y-5">
-                {contactMethods.map((method, i) => (
-                  <a
-                    key={i}
-                    href={method.href}
-                    className="block group"
-                    style={{ textDecoration: "none" }}
-                  >
-                    <p
-                      className="tracking-[0.15em] mb-1"
-                      style={{
-                        color: "rgba(255,255,255,0.5)",
-                        textTransform: "lowercase",
-                        fontSize: "11px",
-                        letterSpacing: "0.15em",
-                      }}
-                    >
-                      {method.label.toLowerCase()}
-                    </p>
-                    <p
-                      className="font-display group-hover:opacity-70 transition-opacity"
-                      style={{
-                        color: "#FFFFFF",
-                        fontSize: "clamp(15px, 1.3vw, 18px)",
-                        fontWeight: 300,
-                        fontStyle: "italic",
-                      }}
-                    >
-                      {method.value}
-                    </p>
-                  </a>
-                ))}
-              </div>
+              <p
+                className="reveal-item mb-8 leading-relaxed"
+                style={{ color: "rgba(255,255,255,0.85)", fontSize: "15px", lineHeight: 1.8 }}
+              >
+                A brief introduction is all we need to begin.
+              </p>
+              <p
+                className="reveal-item mb-6 leading-relaxed"
+                style={{ color: "rgba(255,255,255,0.85)", fontSize: "15px", lineHeight: 1.8 }}
+              >
+                You can schedule a private design consultation with our Design Director, James Hartwood, and we&apos;ll guide you from there.
+              </p>
+              <p
+                className="reveal-item mb-3"
+                style={{ color: "rgba(255,255,255,0.95)", fontSize: "15px", fontWeight: 500 }}
+              >
+                What happens next
+              </p>
+              <p
+                className="reveal-item mb-10 leading-relaxed"
+                style={{ color: "rgba(255,255,255,0.85)", fontSize: "15px", lineHeight: 1.8 }}
+              >
+                We&apos;ll review your details and contact you personally to discuss your vision, understand your priorities, and outline the best way forward for your project.
+              </p>
             </div>
-          </div>
 
-          {/* Right — faded/washed-out image */}
-          <div className="reveal-item relative" style={{ minHeight: "400px" }}>
-            <Image
-              src={contactHeroData.image}
-              alt="Contact Hartwood Landscapes"
-              fill
-              className="object-cover"
-              sizes="(max-width: 1024px) 100vw, 50vw"
-              priority
-            />
-            {/* White wash overlay to match reference */}
-            <div
-              className="absolute inset-0"
-              style={{ background: "rgba(255,255,255,0.35)" }}
-            />
+            {/* Right: Form */}
+            <div className="reveal-item">
+              <p
+                className="font-display mb-8"
+                style={{
+                  fontSize: "clamp(20px, 2vw, 26px)",
+                  fontWeight: 300,
+                  fontStyle: "italic",
+                  color: "#FFFFFF",
+                  lineHeight: 1.4,
+                }}
+              >
+                Arrange an initial garden design consultation and tell us about your project.
+              </p>
+              <form className="space-y-5" onSubmit={(e) => e.preventDefault()}>
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <label className="block mb-2" style={{ color: "rgba(255,255,255,0.9)", fontSize: "13px" }}>First name <span style={{ color: "rgba(255,255,255,0.6)" }}>*</span></label>
+                    <input
+                      type="text"
+                      className="w-full px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-white/30"
+                      style={{ background: "rgba(255,255,255,0.9)", border: "none", color: "#2C2C2C", borderRadius: "4px" }}
+                    />
+                  </div>
+                  <div>
+                    <label className="block mb-2" style={{ color: "rgba(255,255,255,0.9)", fontSize: "13px" }}>Last name <span style={{ color: "rgba(255,255,255,0.6)" }}>*</span></label>
+                    <input
+                      type="text"
+                      className="w-full px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-white/30"
+                      style={{ background: "rgba(255,255,255,0.9)", border: "none", color: "#2C2C2C", borderRadius: "4px" }}
+                    />
+                  </div>
+                </div>
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <label className="block mb-2" style={{ color: "rgba(255,255,255,0.9)", fontSize: "13px" }}>Phone <span style={{ color: "rgba(255,255,255,0.6)" }}>*</span></label>
+                    <div className="flex">
+                      <div
+                        className="flex items-center gap-1.5 px-3 text-sm shrink-0"
+                        style={{ background: "rgba(255,255,255,0.85)", borderRight: "1px solid #ddd", borderRadius: "4px 0 0 4px", color: "#2C2C2C", fontSize: "13px" }}
+                      >
+                        <span>🇬🇧</span>
+                        <span style={{ fontSize: "11px", color: "#888" }}>▾</span>
+                      </div>
+                      <input
+                        type="tel"
+                        className="w-full px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-white/30"
+                        style={{ background: "rgba(255,255,255,0.9)", border: "none", color: "#2C2C2C", borderRadius: "0 4px 4px 0" }}
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <label className="block mb-2" style={{ color: "rgba(255,255,255,0.9)", fontSize: "13px" }}>Postcode <span style={{ color: "rgba(255,255,255,0.6)" }}>*</span></label>
+                    <input
+                      type="text"
+                      className="w-full px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-white/30"
+                      style={{ background: "rgba(255,255,255,0.9)", border: "none", color: "#2C2C2C", borderRadius: "4px" }}
+                    />
+                  </div>
+                </div>
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <label className="block mb-2" style={{ color: "rgba(255,255,255,0.9)", fontSize: "13px" }}>Email <span style={{ color: "rgba(255,255,255,0.6)" }}>*</span></label>
+                    <input
+                      type="email"
+                      className="w-full px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-white/30"
+                      style={{ background: "rgba(255,255,255,0.9)", border: "none", color: "#2C2C2C", borderRadius: "4px" }}
+                    />
+                  </div>
+                  <div>
+                    <label className="block mb-2" style={{ color: "rgba(255,255,255,0.9)", fontSize: "13px" }}>What service are you looking for?</label>
+                    <select
+                      className="w-full px-4 py-3 text-sm focus:outline-none appearance-none focus:ring-2 focus:ring-white/30"
+                      style={{
+                        background: "rgba(255,255,255,0.9)",
+                        border: "none",
+                        color: "#2C2C2C",
+                        borderRadius: "4px",
+                        backgroundImage: `url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%23666' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")`,
+                        backgroundRepeat: "no-repeat",
+                        backgroundPosition: "right 14px center",
+                        paddingRight: "40px",
+                      }}
+                    >
+                      <option value="">Select...</option>
+                      <option value="design">Garden Design</option>
+                      <option value="landscaping">Landscaping &amp; Build</option>
+                      <option value="styling">Garden Styling</option>
+                      <option value="planting">Planting Schemes</option>
+                    </select>
+                  </div>
+                </div>
+                <button
+                  type="submit"
+                  className="w-full py-4 mt-2 text-sm font-medium tracking-wide transition-all duration-300 hover:opacity-90"
+                  style={{
+                    background: "rgba(255,255,255,0.9)",
+                    color: "#2C2C2C",
+                    border: "none",
+                    cursor: "pointer",
+                    fontSize: "14px",
+                    borderRadius: "4px",
+                    letterSpacing: "0.5px",
+                  }}
+                >
+                  Submit
+                </button>
+              </form>
+            </div>
           </div>
         </div>
       </section>
@@ -140,7 +211,6 @@ export default function ContactPage() {
               >
                 FIND US
               </p>
-              {/* Location pin icon */}
               <div className="flex justify-center mb-6">
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.5">
                   <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
@@ -176,7 +246,6 @@ export default function ContactPage() {
               >
                 WE ARE OPEN
               </p>
-              {/* Calendar icon */}
               <div className="flex justify-center mb-6">
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.5">
                   <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
@@ -219,13 +288,11 @@ export default function ContactPage() {
               >
                 WHAT WE ARE UP TO
               </p>
-              {/* Heart icon */}
               <div className="flex justify-center mb-6">
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.5">
                   <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z" />
                 </svg>
               </div>
-              {/* Social icons grid */}
               <div className="flex flex-wrap justify-center gap-4">
                 {socialLinks.map((link, i) => (
                   <a
@@ -293,7 +360,6 @@ export default function ContactPage() {
                 className="reveal-item block group"
                 style={{ textDecoration: "none" }}
               >
-                {/* Portrait image */}
                 <div
                   className="relative overflow-hidden mb-4"
                   style={{ aspectRatio: "3/4", borderRadius: "8px" }}
@@ -306,7 +372,6 @@ export default function ContactPage() {
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                   />
                 </div>
-                {/* Pill button below image */}
                 <div
                   className="text-center py-3 px-4 transition-all duration-300 group-hover:opacity-80"
                   style={{
@@ -321,158 +386,6 @@ export default function ContactPage() {
                 </div>
               </Link>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ─── CTA + FORM SECTION ─── */}
-      <section ref={formRef} style={{ background: "#7A8B7F" }} className="section-padding">
-        <div className="container-custom">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
-            {/* Left: Text */}
-            <div>
-              <h2
-                className="reveal-item font-display mb-6"
-                style={{
-                  fontSize: "clamp(28px, 3.5vw, 42px)",
-                  fontWeight: 300,
-                  fontStyle: "italic",
-                  color: "#FFFFFF",
-                  lineHeight: 1.3,
-                }}
-              >
-                Ready to transform your garden?
-              </h2>
-              <p
-                className="reveal-item mb-5 leading-relaxed"
-                style={{ color: "rgba(255,255,255,0.85)", fontSize: "15px", lineHeight: 1.7 }}
-              >
-                Our award-winning team is here to shape a garden that reflects your lifestyle, complements your home and offers a refined outdoor living experience for years to come.
-              </p>
-              <p
-                className="reveal-item mb-5 leading-relaxed"
-                style={{ color: "rgba(255,255,255,0.85)", fontSize: "15px", lineHeight: 1.7 }}
-              >
-                A brief introduction is all we need to begin. You can schedule a private design consultation and we&apos;ll guide you from there.
-              </p>
-              <p
-                className="reveal-item mb-5 leading-relaxed"
-                style={{ color: "rgba(255,255,255,0.7)", fontSize: "14px", fontWeight: 500 }}
-              >
-                What happens next
-              </p>
-              <p
-                className="reveal-item mb-8 leading-relaxed"
-                style={{ color: "rgba(255,255,255,0.85)", fontSize: "15px", lineHeight: 1.7 }}
-              >
-                We&apos;ll review your details and contact you personally to discuss your vision, understand your priorities, and outline the best way forward for your project.
-              </p>
-              <p className="reveal-item">
-                <a
-                  href="tel:01892489923"
-                  className="font-display"
-                  style={{
-                    color: "#FFFFFF",
-                    fontSize: "clamp(20px, 2.5vw, 28px)",
-                    fontWeight: 300,
-                    fontStyle: "italic",
-                    textDecoration: "none",
-                  }}
-                >
-                  01892 489 923
-                </a>
-              </p>
-            </div>
-
-            {/* Right: Form */}
-            <div className="reveal-item">
-              <p
-                className="font-display mb-8"
-                style={{
-                  fontSize: "clamp(20px, 2vw, 26px)",
-                  fontWeight: 300,
-                  fontStyle: "italic",
-                  color: "#FFFFFF",
-                  lineHeight: 1.4,
-                }}
-              >
-                Arrange an initial garden design consultation and tell us about your project.
-              </p>
-              <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-xs mb-2" style={{ color: "rgba(255,255,255,0.8)", fontSize: "12px" }}>First name *</label>
-                    <input
-                      type="text"
-                      className="w-full px-4 py-3 rounded-sm text-sm focus:outline-none"
-                      style={{ background: "rgba(255,255,255,0.9)", border: "none", color: "#2C2C2C" }}
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-xs mb-2" style={{ color: "rgba(255,255,255,0.8)", fontSize: "12px" }}>Last name *</label>
-                    <input
-                      type="text"
-                      className="w-full px-4 py-3 rounded-sm text-sm focus:outline-none"
-                      style={{ background: "rgba(255,255,255,0.9)", border: "none", color: "#2C2C2C" }}
-                    />
-                  </div>
-                </div>
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-xs mb-2" style={{ color: "rgba(255,255,255,0.8)", fontSize: "12px" }}>Phone *</label>
-                    <input
-                      type="tel"
-                      className="w-full px-4 py-3 rounded-sm text-sm focus:outline-none"
-                      style={{ background: "rgba(255,255,255,0.9)", border: "none", color: "#2C2C2C" }}
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-xs mb-2" style={{ color: "rgba(255,255,255,0.8)", fontSize: "12px" }}>Postcode *</label>
-                    <input
-                      type="text"
-                      className="w-full px-4 py-3 rounded-sm text-sm focus:outline-none"
-                      style={{ background: "rgba(255,255,255,0.9)", border: "none", color: "#2C2C2C" }}
-                    />
-                  </div>
-                </div>
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-xs mb-2" style={{ color: "rgba(255,255,255,0.8)", fontSize: "12px" }}>Email *</label>
-                    <input
-                      type="email"
-                      className="w-full px-4 py-3 rounded-sm text-sm focus:outline-none"
-                      style={{ background: "rgba(255,255,255,0.9)", border: "none", color: "#2C2C2C" }}
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-xs mb-2" style={{ color: "rgba(255,255,255,0.8)", fontSize: "12px" }}>What service are you looking for?</label>
-                    <select
-                      className="w-full px-4 py-3 rounded-sm text-sm focus:outline-none appearance-none"
-                      style={{ background: "rgba(255,255,255,0.9)", border: "none", color: "#2C2C2C" }}
-                    >
-                      <option value="">Select...</option>
-                      <option value="design">Garden Design</option>
-                      <option value="landscaping">Landscaping &amp; Build</option>
-                      <option value="styling">Garden Styling</option>
-                      <option value="planting">Planting Schemes</option>
-                    </select>
-                  </div>
-                </div>
-                <button
-                  type="submit"
-                  className="w-full py-4 mt-4 text-sm font-medium tracking-wide rounded-sm transition-all duration-300 hover:opacity-90"
-                  style={{
-                    background: "rgba(255,255,255,0.9)",
-                    color: "#2C2C2C",
-                    border: "none",
-                    cursor: "pointer",
-                    fontSize: "14px",
-                  }}
-                >
-                  Submit
-                </button>
-              </form>
-            </div>
           </div>
         </div>
       </section>
