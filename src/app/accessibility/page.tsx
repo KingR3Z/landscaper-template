@@ -20,7 +20,7 @@ export default function AccessibilityPage() {
 
           <div className="space-y-6" style={{ color: "#555", fontSize: "15px", lineHeight: 1.8 }}>
             <p>
-              Hartwood Landscapes Ltd is committed to ensuring digital accessibility for people of all abilities. We are continually improving the user experience for everyone and applying the relevant accessibility standards.
+              Garden & Driveways Ltd is committed to ensuring digital accessibility for people of all abilities. We are continually improving the user experience for everyone and applying the relevant accessibility standards.
             </p>
 
             <h2 style={{ color: "#2C2C2C", fontSize: "18px", fontWeight: 500, marginTop: "32px" }}>
@@ -45,7 +45,7 @@ export default function AccessibilityPage() {
               Feedback
             </h2>
             <p>
-              We welcome your feedback on the accessibility of this website. If you encounter any barriers or have suggestions for improvement, please contact us at design@hartwood-landscapes.co.uk or call 01892 489 923.
+              We welcome your feedback on the accessibility of this website. If you encounter any barriers or have suggestions for improvement, please contact us at design@gardenanddriveways.co.uk or call 01892 489 923.
             </p>
 
             <p style={{ marginTop: "40px", color: "#999", fontSize: "13px" }}>

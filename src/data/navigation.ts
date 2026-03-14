@@ -1,16 +1,16 @@
 export const mainNav = {
-  logo: "Hartwood",
-  cta: { label: "Contact Us", href: "/contact" },
+  logo: "G&D",
+  cta: { label: "Get a Free Quote", href: "/contact" },
   links: [
     { label: "Home", href: "/" },
     {
-      label: "Garden Design",
+      label: "Services",
       href: "/garden-design",
       children: [
         { label: "Our Gardens", href: "/our-gardens" },
       ],
     },
-    { label: "Portfolio", href: "/portfolio" },
+    { label: "Portfolio", href: "/our-gardens" },
     { label: "About Us", href: "/about" },
     { label: "Contact Us", href: "/contact" },
     { label: "News", href: "/news" },
@@ -18,21 +18,21 @@ export const mainNav = {
 };
 
 export const footerData = {
-  logo: "H L",
-  tagline: "HARTWOOD LANDSCAPES",
-  subtitle: "INSPIRE | DESIGN | CREATE | NURTURE",
+  logo: "G D",
+  tagline: "GARDEN & DRIVEWAYS",
+  subtitle: "GARDENS | DRIVEWAYS | PATIOS | LANDSCAPING",
   contact: {
     heading: "GET IN TOUCH",
-    address: ["Hartwood House", "42 High Street", "Tunbridge Wells", "Kent, TN1 1XP"],
-    phone: "01892 489 923",
-    email: "design@hartwood-landscapes.co.uk",
+    address: ["20 Leech Ave", "Newcastle-under-Lyme", "Staffordshire", "ST5 7PN"],
+    phone: "07470 867661",
+    email: "sales@gardenanddriveways.co.uk",
   },
   menu: {
     heading: "MENU",
     links: [
       { label: "Home", href: "/" },
       { label: "About", href: "/about" },
-      { label: "News", href: "/news" },
+      { label: "Portfolio", href: "/our-gardens" },
       { label: "Contact Us", href: "/contact" },
     ],
     legal: [
@@ -43,13 +43,9 @@ export const footerData = {
   socials: {
     heading: "FOLLOW US",
     links: [
-      { label: "Instagram", href: "#" },
-      { label: "Youtube", href: "#" },
       { label: "Facebook", href: "#" },
-      { label: "Houzz", href: "#" },
-      { label: "Pinterest", href: "#" },
-      { label: "Whatsapp", href: "#" },
+      { label: "Instagram", href: "#" },
     ],
   },
-  copyright: "2026 Hartwood Landscapes Ltd",
+  copyright: "2026 Garden & Driveways",
 };

@@ -1,7 +1,7 @@
 export const contactHeroData = {
   overline: "LUXURIOUS OUTDOOR LIVING",
   heading:
-    "Contact Hartwood Landscapes to create your perfect outdoor living space.",
+    "Contact Garden & Driveways to create your perfect outdoor living space.",
   text: "Whether you are considering a full garden redesign, a landscaping project, or simply want some expert advice, we are here to help. Get in touch and we will arrange a convenient time to discuss your vision.",
   image: "/images/projects/project-02.jpg",
 };
@@ -10,8 +10,8 @@ export const contactMethods = [
   {
     icon: "email",
     label: "Email Us",
-    value: "design@hartwood-landscapes.co.uk",
-    href: "mailto:design@hartwood-landscapes.co.uk",
+    value: "design@gardenanddriveways.co.uk",
+    href: "mailto:design@gardenanddriveways.co.uk",
   },
   {
     icon: "phone",
@@ -29,7 +29,7 @@ export const contactMethods = [
 
 export const locationData = {
   address: [
-    "Hartwood House",
+    "Garden & Driveways House",
     "42 High Street",
     "Tunbridge Wells",
     "Kent, TN1 1XP",

@@ -69,7 +69,7 @@ export default function AboutPage() {
           <div className="about-hero-image relative" style={{ minHeight: "400px" }}>
             <Image
               src={aboutHeaderData.image}
-              alt="Hartwood Landscapes studio"
+              alt="Garden & Driveways studio"
               fill
               className="object-cover"
               sizes="(max-width: 1024px) 100vw, 50vw"

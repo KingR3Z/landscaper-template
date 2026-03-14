@@ -20,7 +20,7 @@ export default function PrivacyPage() {
 
           <div className="space-y-6" style={{ color: "#555", fontSize: "15px", lineHeight: 1.8 }}>
             <p>
-              Hartwood Landscapes Ltd is committed to protecting your privacy. This policy explains how we collect, use, and safeguard your personal information when you visit our website or use our services.
+              Garden & Driveways Ltd is committed to protecting your privacy. This policy explains how we collect, use, and safeguard your personal information when you visit our website or use our services.
             </p>
 
             <h2 style={{ color: "#2C2C2C", fontSize: "18px", fontWeight: 500, marginTop: "32px" }}>
@@ -48,14 +48,14 @@ export default function PrivacyPage() {
               Your Rights
             </h2>
             <p>
-              You have the right to access, correct, or delete your personal data at any time. To exercise these rights, please contact us at design@hartwood-landscapes.co.uk.
+              You have the right to access, correct, or delete your personal data at any time. To exercise these rights, please contact us at design@gardenanddriveways.co.uk.
             </p>
 
             <h2 style={{ color: "#2C2C2C", fontSize: "18px", fontWeight: 500, marginTop: "32px" }}>
               Contact
             </h2>
             <p>
-              If you have questions about this privacy policy, please contact us at design@hartwood-landscapes.co.uk or call 01892 489 923.
+              If you have questions about this privacy policy, please contact us at design@gardenanddriveways.co.uk or call 01892 489 923.
             </p>
 
             <p style={{ marginTop: "40px", color: "#999", fontSize: "13px" }}>

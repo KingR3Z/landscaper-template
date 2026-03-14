@@ -80,7 +80,7 @@ export default function OurGardensPage() {
               Each of our projects represents a unique collaboration between designer and homeowner. From compact London courtyards to sweeping country estates, every garden is shaped by its context, its architecture, and the people who will enjoy it for years to come.
             </p>
             <p className="reveal-item leading-relaxed" style={{ color: "var(--warm-grey)", fontSize: "15px" }}>
-              Browse our portfolio to discover the range and depth of our work. Every project shown here was designed, managed, and built by the Hartwood Landscapes team.
+              Browse our portfolio to discover the range and depth of our work. Every project shown here was designed, managed, and built by the Garden & Driveways team.
             </p>
           </div>
         </div>

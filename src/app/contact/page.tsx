@@ -412,7 +412,7 @@ export default function ContactPage() {
                 className="form-reveal reveal-item mb-5 leading-relaxed"
                 style={{ color: "#F8F9F5", fontSize: "clamp(15px, 1.1vw, 17px)", lineHeight: 1.6 }}
               >
-                You can schedule a private design consultation with our Design Director, James Hartwood, and we&apos;ll guide you from there.
+                You can schedule a private design consultation with our Design Director, James Garden & Driveways, and we&apos;ll guide you from there.
               </p>
               <p
                 className="form-reveal reveal-item mb-3"

@@ -104,7 +104,7 @@ export default function Navigation() {
             className="mobile-brand font-display text-lg tracking-wide"
             style={{ color: "var(--charcoal)" }}
           >
-            Hartwood
+            Garden & Driveways
           </Link>
 
           {/* CTA Button — outline style like reference */}

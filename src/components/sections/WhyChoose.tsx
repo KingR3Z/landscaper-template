@@ -13,7 +13,7 @@ export default function WhyChoose() {
       {/* Full-width background image */}
       <Image
         src={whyChooseData.image}
-        alt="Why choose Hartwood Landscapes"
+        alt="Why choose Garden & Driveways"
         fill
         className="object-cover"
         sizes="100vw"

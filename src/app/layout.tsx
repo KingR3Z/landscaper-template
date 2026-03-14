@@ -15,9 +15,9 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Hartwood Landscapes — Premium Garden Design & Landscaping",
+  title: "Garden & Driveways — Paving, Patios & Landscaping in Newcastle",
   description:
-    "Award-winning luxury garden design and landscaping across London & the South East. Crafting outdoor spaces that inspire.",
+    "Professional paving contractor in Newcastle-under-Lyme, Staffordshire. Driveways, patios, gardens and landscaping. 4.9 stars on Google Reviews.",
 };
 
 export default function RootLayout({

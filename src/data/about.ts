@@ -2,7 +2,7 @@ export const aboutHeaderData = {
   overline: "ABOUT HARTWOOD LANDSCAPES",
   heading: "Bespoke Garden Design and Build Studio",
   paragraphs: [
-    "Hartwood Landscapes is an award-winning garden design and landscaping studio based in Tunbridge Wells, Kent. We specialise in creating exceptional outdoor living spaces for discerning homeowners across the South East.",
+    "Garden & Driveways is an award-winning garden design and landscaping studio based in Tunbridge Wells, Kent. We specialise in creating exceptional outdoor living spaces for discerning homeowners across the South East.",
     "With over a decade of experience, our team brings together landscape architecture, horticulture, and fine craftsmanship to deliver gardens that are as functional as they are beautiful.",
   ],
   image: "/images/about-landscape.jpg",
@@ -30,14 +30,14 @@ export const coreValues = [
 ];
 
 export const directorData = {
-  name: "James Hartwood",
+  name: "James Garden & Driveways",
   role: "Design Director",
   image: "/images/director-portrait.jpg",
   bio: [
-    "James Hartwood founded Hartwood Landscapes in 2012 with a clear vision: to create outdoor spaces that elevate the way people live and experience their homes.",
+    "James Garden & Driveways founded Garden & Driveways in 2012 with a clear vision: to create outdoor spaces that elevate the way people live and experience their homes.",
     "With a degree in Landscape Architecture from the University of Greenwich, James brings a rigorous design methodology to every project. His approach combines classical proportions with contemporary sensibility, creating gardens that feel both timeless and fresh.",
     "James is passionate about the relationship between architecture and landscape, believing that the most successful gardens are those that feel like a natural extension of the home. Every project begins with a deep understanding of the site, the architecture, and the people who will enjoy the space.",
-    "Under James's direction, Hartwood Landscapes has been recognised as a Best of Houzz winner for both Design and Service, reflecting a continued commitment to excellence at every stage of the process.",
+    "Under James's direction, Garden & Driveways has been recognised as a Best of Houzz winner for both Design and Service, reflecting a continued commitment to excellence at every stage of the process.",
     "When not designing gardens, James can be found exploring the gardens of the National Trust, sketching in the Kent countryside, or tending to his own garden in Tunbridge Wells.",
   ],
   cta: { label: "Contact James", href: "/contact" },
@@ -46,7 +46,7 @@ export const directorData = {
 export const missionData = {
   heading: "Our Mission",
   paragraphs: [
-    "At Hartwood Landscapes, our mission is to create outdoor living spaces that enhance the way our clients experience their homes. We believe that a beautifully designed garden is not a luxury — it is an essential part of a well-lived life.",
+    "At Garden & Driveways, our mission is to create outdoor living spaces that enhance the way our clients experience their homes. We believe that a beautifully designed garden is not a luxury — it is an essential part of a well-lived life.",
     "We approach every project as a unique design challenge, drawing on our expertise in landscape architecture, horticulture, and construction to deliver gardens that are thoughtfully planned, beautifully crafted, and built to endure.",
     "As a design-led studio, we are committed to pushing the boundaries of what is possible in residential garden design, while always respecting the character of the site, the architecture of the home, and the aspirations of our clients.",
   ],
