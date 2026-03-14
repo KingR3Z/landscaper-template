@@ -10,18 +10,52 @@ export default function Hero() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
   const subtitleRef = useRef<HTMLParagraphElement>(null);
+  const ctaRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.fromTo(
-        titleRef.current,
-        { opacity: 0, y: 50 },
-        { opacity: 1, y: 0, duration: 1.2, ease: "power3.out", delay: 0.3 }
-      );
+      // Split title into lines for staggered animation
+      const titleEl = titleRef.current;
+      if (titleEl) {
+        const text = titleEl.textContent || "";
+        const lines = text.split("\n").filter(Boolean);
+
+        if (lines.length > 1) {
+          // Multi-line: wrap each line in a span for staggered reveal
+          titleEl.innerHTML = lines
+            .map((line) => `<span class="hero-line" style="display:block;opacity:0;transform:translateY(60px)">${line}</span>`)
+            .join("");
+
+          gsap.to(".hero-line", {
+            opacity: 1,
+            y: 0,
+            duration: 1,
+            ease: "power3.out",
+            stagger: 0.15,
+            delay: 0.3,
+          });
+        } else {
+          // Single line fallback
+          gsap.fromTo(
+            titleEl,
+            { opacity: 0, y: 60 },
+            { opacity: 1, y: 0, duration: 1.2, ease: "power3.out", delay: 0.3 }
+          );
+        }
+      }
+
+      // Subtitle fades in after title
       gsap.fromTo(
         subtitleRef.current,
-        { opacity: 0, y: 30 },
-        { opacity: 1, y: 0, duration: 1, ease: "power3.out", delay: 0.7 }
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, duration: 0.8, ease: "power3.out", delay: 0.8 }
+      );
+
+      // CTA button fades in last
+      gsap.fromTo(
+        ctaRef.current,
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, duration: 0.8, ease: "power3.out", delay: 1.1 }
       );
     }, sectionRef);
     return () => ctx.revert();
@@ -68,11 +102,16 @@ export default function Hero() {
         <p
           ref={subtitleRef}
           className="mt-6 text-white/60 tracking-[0.25em]"
-          style={{ fontSize: "clamp(11px, 1vw, 14px)", fontWeight: 400, textTransform: "uppercase" }}
+          style={{
+            fontSize: "clamp(11px, 1vw, 14px)",
+            fontWeight: 400,
+            textTransform: "uppercase",
+            opacity: 0,
+          }}
         >
           {heroData.subtitle}
         </p>
-        <div className="mt-8">
+        <div ref={ctaRef} className="mt-8" style={{ opacity: 0 }}>
           <Link
             href="/contact"
             className="inline-flex items-center gap-3"

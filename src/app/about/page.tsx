@@ -3,7 +3,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import InnerPageLayout from "@/components/layout/InnerPageLayout";
-import PageHero from "@/components/sections/PageHero";
 import { useReveal } from "@/hooks/useReveal";
 import {
   aboutHeaderData,
@@ -24,43 +23,37 @@ export default function AboutPage() {
 
   return (
     <InnerPageLayout>
-      <PageHero
-        title="About Hartwood Landscapes"
-        subtitle="Passion, craft, and an unwavering commitment to quality"
-        image="/images/about-landscape.jpg"
-      />
-
-      {/* About Header — sage bg left + image right */}
-      <section ref={headerRef}>
-        <div className="grid grid-cols-1 lg:grid-cols-2" style={{ minHeight: "500px" }}>
+      {/* About Header — dark sage bg left + image right (NO PageHero) */}
+      <section ref={headerRef} style={{ marginTop: "70px" }}>
+        <div className="grid grid-cols-1 lg:grid-cols-2" style={{ minHeight: "70vh" }}>
           <div
             className="flex items-center"
-            style={{ background: "#D5DDD1", padding: "clamp(40px, 5vw, 80px)" }}
+            style={{ background: "#7A8B7F", padding: "clamp(40px, 5vw, 80px)" }}
           >
             <div>
               <p
                 className="reveal-item text-xs tracking-[0.2em] mb-4"
-                style={{ color: "var(--warm-grey)", textTransform: "uppercase" }}
+                style={{ color: "rgba(255,255,255,0.7)", textTransform: "uppercase" }}
               >
                 {aboutHeaderData.overline}
               </p>
-              <h2
+              <h1
                 className="reveal-item font-display mb-8"
                 style={{
-                  fontSize: "clamp(28px, 3vw, 42px)",
+                  fontSize: "clamp(28px, 3vw, 44px)",
                   fontWeight: 300,
                   fontStyle: "italic",
-                  color: "var(--charcoal)",
+                  color: "#FFFFFF",
                   lineHeight: 1.3,
                 }}
               >
                 {aboutHeaderData.heading}
-              </h2>
+              </h1>
               {aboutHeaderData.paragraphs.map((p, i) => (
                 <p
                   key={i}
                   className="reveal-item mb-5 leading-relaxed"
-                  style={{ color: "var(--warm-grey)", fontSize: "15px" }}
+                  style={{ color: "rgba(255,255,255,0.85)", fontSize: "15px" }}
                 >
                   {p}
                 </p>
@@ -74,6 +67,7 @@ export default function AboutPage() {
               fill
               className="object-cover"
               sizes="(max-width: 1024px) 100vw, 50vw"
+              priority
             />
           </div>
         </div>

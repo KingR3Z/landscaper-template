@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import InnerPageLayout from "@/components/layout/InnerPageLayout";
 import { useReveal } from "@/hooks/useReveal";
 import {
@@ -9,27 +10,29 @@ import {
   locationData,
   hoursData,
   socialLinks,
+  exploreServices,
 } from "@/data/contact";
 
 export default function ContactPage() {
   const heroRef = useReveal(".reveal-item");
   const methodsRef = useReveal(".reveal-item");
   const detailsRef = useReveal(".reveal-item");
+  const servicesRef = useReveal(".reveal-item");
   const formRef = useReveal(".reveal-item");
 
   return (
     <InnerPageLayout>
-      {/* Split Hero — sage bg left + image right (no fullscreen PageHero) */}
+      {/* Split Hero — dark sage bg left + image right */}
       <section ref={heroRef} style={{ marginTop: "70px" }}>
         <div className="grid grid-cols-1 lg:grid-cols-2" style={{ minHeight: "70vh" }}>
           <div
             className="flex items-center"
-            style={{ background: "#D5DDD1", padding: "clamp(40px, 5vw, 80px)" }}
+            style={{ background: "#7A8B7F", padding: "clamp(40px, 5vw, 80px)" }}
           >
             <div>
               <p
                 className="reveal-item text-xs tracking-[0.2em] mb-4"
-                style={{ color: "var(--warm-grey)", textTransform: "uppercase" }}
+                style={{ color: "rgba(255,255,255,0.7)", textTransform: "uppercase" }}
               >
                 {contactHeroData.overline}
               </p>
@@ -39,7 +42,7 @@ export default function ContactPage() {
                   fontSize: "clamp(28px, 3vw, 44px)",
                   fontWeight: 300,
                   fontStyle: "italic",
-                  color: "var(--charcoal)",
+                  color: "#FFFFFF",
                   lineHeight: 1.3,
                 }}
               >
@@ -47,7 +50,7 @@ export default function ContactPage() {
               </h1>
               <p
                 className="reveal-item leading-relaxed"
-                style={{ color: "var(--warm-grey)", fontSize: "15px" }}
+                style={{ color: "rgba(255,255,255,0.85)", fontSize: "15px" }}
               >
                 {contactHeroData.text}
               </p>
@@ -207,6 +210,61 @@ export default function ContactPage() {
                 ))}
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Explore Our Services — 4-card grid */}
+      <section ref={servicesRef} className="bg-white section-padding">
+        <div className="container-custom">
+          <h2
+            className="reveal-item font-display text-center mb-12"
+            style={{
+              fontSize: "clamp(26px, 3vw, 38px)",
+              fontWeight: 300,
+              fontStyle: "italic",
+              color: "var(--charcoal)",
+              lineHeight: 1.3,
+            }}
+          >
+            Explore Our Services
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {exploreServices.map((service, i) => (
+              <Link
+                key={i}
+                href={service.href}
+                className="reveal-item relative block overflow-hidden group"
+                style={{ aspectRatio: "3/4", borderRadius: "4px", textDecoration: "none" }}
+              >
+                <Image
+                  src={service.image}
+                  alt={service.title}
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                />
+                <div
+                  className="absolute inset-0"
+                  style={{
+                    background: "linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0.05) 100%)",
+                  }}
+                />
+                <div className="absolute bottom-0 left-0 right-0 p-6">
+                  <h3
+                    className="font-display text-white"
+                    style={{
+                      fontSize: "clamp(16px, 1.5vw, 20px)",
+                      fontWeight: 400,
+                      fontStyle: "italic",
+                      lineHeight: 1.3,
+                    }}
+                  >
+                    {service.title}
+                  </h3>
+                </div>
+              </Link>
+            ))}
           </div>
         </div>
       </section>

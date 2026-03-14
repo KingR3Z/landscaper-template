@@ -51,3 +51,26 @@ export const socialLinks = [
   { label: "Houzz", href: "#" },
   { label: "Pinterest", href: "#" },
 ];
+
+export const exploreServices = [
+  {
+    title: "Garden & Landscape Design",
+    image: "/images/projects/project-01.jpg",
+    href: "/garden-design",
+  },
+  {
+    title: "Landscaping & Garden Build",
+    image: "/images/projects/project-03.jpg",
+    href: "/garden-design/landscaping",
+  },
+  {
+    title: "Planting Schemes",
+    image: "/images/projects/project-05.jpg",
+    href: "/garden-design/planting-schemes",
+  },
+  {
+    title: "Garden Styling",
+    image: "/images/projects/project-04.jpg",
+    href: "/garden-design/garden-styling",
+  },
+];

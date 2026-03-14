@@ -6,6 +6,7 @@ import { mainNav } from "@/data/navigation";
 
 export default function Navigation() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
 
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? "hidden" : "";
@@ -26,22 +27,74 @@ export default function Navigation() {
           {/* Desktop Nav — links spread evenly across full width, no logo */}
           <nav className="desktop-nav items-center gap-0 flex-1">
             {mainNav.links.map((link) => (
-              <Link
+              <div
                 key={link.label}
-                href={link.href}
-                className="flex-1 text-center transition-opacity hover:opacity-60"
-                style={{
-                  color: "var(--charcoal)",
-                  fontFamily: "var(--font-body)",
-                  fontWeight: 400,
-                  fontSize: "15px",
-                  letterSpacing: "0.3px",
-                  textDecoration: "none",
-                }}
+                className="nav-item-wrapper flex-1 text-center"
+                style={{ position: "relative" }}
+                onMouseEnter={() => link.children && setActiveDropdown(link.label)}
+                onMouseLeave={() => setActiveDropdown(null)}
               >
-                {link.label}
-                {link.children && <span style={{ marginLeft: "4px", fontSize: "12px", opacity: 0.5 }}>&#8964;</span>}
-              </Link>
+                <Link
+                  href={link.href}
+                  className="nav-link transition-opacity hover:opacity-60"
+                  style={{
+                    color: "var(--charcoal)",
+                    fontFamily: "var(--font-body)",
+                    fontWeight: 400,
+                    fontSize: "15px",
+                    letterSpacing: "0.3px",
+                    textDecoration: "none",
+                    display: "inline-block",
+                    padding: "8px 0",
+                  }}
+                >
+                  {link.label}
+                  {link.children && <span style={{ marginLeft: "4px", fontSize: "12px", opacity: 0.5 }}>&#8964;</span>}
+                </Link>
+
+                {/* Dropdown Menu */}
+                {link.children && (
+                  <div
+                    className="dropdown-menu"
+                    style={{
+                      position: "absolute",
+                      top: "100%",
+                      left: "50%",
+                      transform: `translateX(-50%) translateY(${activeDropdown === link.label ? "0" : "-8px"})`,
+                      opacity: activeDropdown === link.label ? 1 : 0,
+                      pointerEvents: activeDropdown === link.label ? "auto" : "none",
+                      transition: "all 0.25s ease",
+                      background: "white",
+                      boxShadow: "0 8px 32px rgba(0,0,0,0.1)",
+                      borderRadius: "8px",
+                      padding: "12px 0",
+                      minWidth: "220px",
+                      zIndex: 60,
+                    }}
+                  >
+                    {link.children.map((child) => (
+                      <Link
+                        key={child.label}
+                        href={child.href}
+                        className="block transition-colors"
+                        style={{
+                          padding: "10px 24px",
+                          color: "var(--charcoal)",
+                          fontFamily: "var(--font-body)",
+                          fontSize: "14px",
+                          fontWeight: 400,
+                          textDecoration: "none",
+                          whiteSpace: "nowrap",
+                        }}
+                        onMouseEnter={(e) => (e.currentTarget.style.background = "var(--cream)")}
+                        onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
+                      >
+                        {child.label}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
             ))}
           </nav>
 
@@ -113,15 +166,31 @@ export default function Navigation() {
         <div className="flex flex-col justify-center h-full px-8">
           <nav className="space-y-6">
             {mainNav.links.map((link) => (
-              <Link
-                key={link.label}
-                href={link.href}
-                onClick={() => setMobileOpen(false)}
-                className="block font-display text-3xl hover:opacity-60 transition-opacity"
-                style={{ color: "var(--charcoal)" }}
-              >
-                {link.label}
-              </Link>
+              <div key={link.label}>
+                <Link
+                  href={link.href}
+                  onClick={() => setMobileOpen(false)}
+                  className="block font-display text-3xl hover:opacity-60 transition-opacity"
+                  style={{ color: "var(--charcoal)" }}
+                >
+                  {link.label}
+                </Link>
+                {link.children && (
+                  <div className="mt-2 ml-4 space-y-2">
+                    {link.children.map((child) => (
+                      <Link
+                        key={child.label}
+                        href={child.href}
+                        onClick={() => setMobileOpen(false)}
+                        className="block text-lg hover:opacity-60 transition-opacity"
+                        style={{ color: "var(--warm-grey)" }}
+                      >
+                        {child.label}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
             ))}
           </nav>
           <div className="mt-12">
