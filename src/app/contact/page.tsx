@@ -15,47 +15,89 @@ import {
 
 export default function ContactPage() {
   const heroRef = useReveal(".reveal-item");
-  const methodsRef = useReveal(".reveal-item");
-  const detailsRef = useReveal(".reveal-item");
+  const cardsRef = useReveal(".reveal-item");
   const servicesRef = useReveal(".reveal-item");
   const formRef = useReveal(".reveal-item");
 
   return (
     <InnerPageLayout>
-      {/* Split Hero — dark sage bg left + image right */}
+      {/* ─── HERO: Sage left + faded image right ─── */}
       <section ref={heroRef} style={{ marginTop: "70px" }}>
-        <div className="grid grid-cols-1 lg:grid-cols-2" style={{ minHeight: "70vh" }}>
+        <div className="grid grid-cols-1 lg:grid-cols-2" style={{ minHeight: "85vh" }}>
+          {/* Left — sage background with text content */}
           <div
-            className="flex items-center"
+            className="flex flex-col justify-center"
             style={{ background: "#7A8B7F", padding: "clamp(40px, 5vw, 80px)" }}
           >
-            <div>
+            <div style={{ maxWidth: "540px" }}>
               <p
-                className="reveal-item text-xs tracking-[0.2em] mb-4"
-                style={{ color: "rgba(255,255,255,0.7)", textTransform: "uppercase" }}
+                className="reveal-item tracking-[0.2em] mb-6"
+                style={{
+                  color: "rgba(255,255,255,0.7)",
+                  textTransform: "uppercase",
+                  fontSize: "12px",
+                  letterSpacing: "0.25em",
+                }}
               >
                 {contactHeroData.overline}
               </p>
               <h1
                 className="reveal-item font-display mb-8"
                 style={{
-                  fontSize: "clamp(28px, 3vw, 44px)",
+                  fontSize: "clamp(28px, 3vw, 42px)",
                   fontWeight: 300,
                   fontStyle: "italic",
                   color: "#FFFFFF",
-                  lineHeight: 1.3,
+                  lineHeight: 1.35,
                 }}
               >
                 {contactHeroData.heading}
               </h1>
               <p
-                className="reveal-item leading-relaxed"
-                style={{ color: "rgba(255,255,255,0.85)", fontSize: "15px" }}
+                className="reveal-item leading-relaxed mb-10"
+                style={{ color: "rgba(255,255,255,0.8)", fontSize: "15px", lineHeight: 1.7 }}
               >
                 {contactHeroData.text}
               </p>
+
+              {/* Contact methods inline */}
+              <div className="reveal-item space-y-5">
+                {contactMethods.map((method, i) => (
+                  <a
+                    key={i}
+                    href={method.href}
+                    className="block group"
+                    style={{ textDecoration: "none" }}
+                  >
+                    <p
+                      className="tracking-[0.15em] mb-1"
+                      style={{
+                        color: "rgba(255,255,255,0.5)",
+                        textTransform: "lowercase",
+                        fontSize: "11px",
+                        letterSpacing: "0.15em",
+                      }}
+                    >
+                      {method.label.toLowerCase()}
+                    </p>
+                    <p
+                      className="font-display group-hover:opacity-70 transition-opacity"
+                      style={{
+                        color: "#FFFFFF",
+                        fontSize: "clamp(15px, 1.3vw, 18px)",
+                        fontWeight: 300,
+                        fontStyle: "italic",
+                      }}
+                    >
+                      {method.value}
+                    </p>
+                  </a>
+                ))}
+              </div>
             </div>
           </div>
+
+          {/* Right — faded/washed-out image */}
           <div className="reveal-item relative" style={{ minHeight: "400px" }}>
             <Image
               src={contactHeroData.image}
@@ -65,147 +107,161 @@ export default function ContactPage() {
               sizes="(max-width: 1024px) 100vw, 50vw"
               priority
             />
+            {/* White wash overlay to match reference */}
+            <div
+              className="absolute inset-0"
+              style={{ background: "rgba(255,255,255,0.35)" }}
+            />
           </div>
         </div>
       </section>
 
-      {/* Contact Methods — 3 columns */}
-      <section ref={methodsRef} className="bg-white section-padding">
+      {/* ─── INFO CARDS: 3 sage rounded cards ─── */}
+      <section ref={cardsRef} className="section-padding" style={{ background: "#FFFFFF" }}>
         <div className="container-custom">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {contactMethods.map((method, i) => (
-              <a
-                key={i}
-                href={method.href}
-                className="reveal-item text-center block group"
-                style={{ padding: "clamp(24px, 3vw, 40px)", textDecoration: "none" }}
-              >
-                <div
-                  className="mx-auto mb-6 flex items-center justify-center"
-                  style={{
-                    width: "64px",
-                    height: "64px",
-                    borderRadius: "50%",
-                    background: "#D5DDD1",
-                  }}
-                >
-                  {method.icon === "email" && (
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--charcoal)" strokeWidth="1.5">
-                      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-                      <polyline points="22,6 12,13 2,6" />
-                    </svg>
-                  )}
-                  {method.icon === "phone" && (
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--charcoal)" strokeWidth="1.5">
-                      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
-                    </svg>
-                  )}
-                  {method.icon === "whatsapp" && (
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--charcoal)" strokeWidth="1.5">
-                      <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
-                    </svg>
-                  )}
-                </div>
-                <p
-                  className="text-xs tracking-[0.15em] mb-2"
-                  style={{ color: "var(--warm-grey)", textTransform: "uppercase" }}
-                >
-                  {method.label}
-                </p>
-                <p
-                  className="font-display group-hover:opacity-70 transition-opacity"
-                  style={{ fontSize: "clamp(15px, 1.3vw, 18px)", color: "var(--charcoal)" }}
-                >
-                  {method.value}
-                </p>
-              </a>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Location, Hours & Social — 3 columns */}
-      <section ref={detailsRef} style={{ background: "var(--cream)" }} className="section-padding">
-        <div className="container-custom">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-            {/* Find Us */}
-            <div className="reveal-item">
-              <div className="relative aspect-[4/3] overflow-hidden mb-6">
-                <Image
-                  src={locationData.image}
-                  alt="Hartwood Landscapes office"
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                />
-              </div>
-              <h3
-                className="text-xs tracking-[0.2em] mb-4 font-semibold"
-                style={{ color: "var(--charcoal)", textTransform: "uppercase" }}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            {/* FIND US */}
+            <div
+              className="reveal-item text-center"
+              style={{
+                background: "#B5BFB0",
+                borderRadius: "12px",
+                padding: "clamp(32px, 4vw, 56px) clamp(24px, 3vw, 40px)",
+              }}
+            >
+              <p
+                className="tracking-[0.2em] mb-5"
+                style={{
+                  color: "#FFFFFF",
+                  textTransform: "uppercase",
+                  fontSize: "11px",
+                  letterSpacing: "0.2em",
+                }}
               >
                 FIND US
-              </h3>
-              <div className="space-y-1">
+              </p>
+              {/* Location pin icon */}
+              <div className="flex justify-center mb-6">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.5">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+                  <circle cx="12" cy="10" r="3" />
+                </svg>
+              </div>
+              <div className="space-y-0.5">
                 {locationData.address.map((line, i) => (
-                  <p key={i} className="text-sm" style={{ color: "var(--warm-grey)" }}>
+                  <p key={i} style={{ color: "#FFFFFF", fontSize: "14px", lineHeight: 1.6 }}>
                     {line}
                   </p>
                 ))}
               </div>
             </div>
 
-            {/* Hours */}
-            <div className="reveal-item">
-              <div
-                className="aspect-[4/3] flex items-center justify-center mb-6"
-                style={{ background: "#D5DDD1" }}
-              >
-                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--charcoal)" strokeWidth="1">
-                  <circle cx="12" cy="12" r="10" />
-                  <polyline points="12 6 12 12 16 14" />
-                </svg>
-              </div>
-              <h3
-                className="text-xs tracking-[0.2em] mb-4 font-semibold"
-                style={{ color: "var(--charcoal)", textTransform: "uppercase" }}
+            {/* WE ARE OPEN */}
+            <div
+              className="reveal-item text-center"
+              style={{
+                background: "#B5BFB0",
+                borderRadius: "12px",
+                padding: "clamp(32px, 4vw, 56px) clamp(24px, 3vw, 40px)",
+              }}
+            >
+              <p
+                className="tracking-[0.2em] mb-5"
+                style={{
+                  color: "#FFFFFF",
+                  textTransform: "uppercase",
+                  fontSize: "11px",
+                  letterSpacing: "0.2em",
+                }}
               >
                 WE ARE OPEN
-              </h3>
-              <div className="space-y-2">
+              </p>
+              {/* Calendar icon */}
+              <div className="flex justify-center mb-6">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.5">
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                  <line x1="16" y1="2" x2="16" y2="6" />
+                  <line x1="8" y1="2" x2="8" y2="6" />
+                  <line x1="3" y1="10" x2="21" y2="10" />
+                  <rect x="7" y="13" width="2" height="2" />
+                  <rect x="11" y="13" width="2" height="2" />
+                  <rect x="15" y="13" width="2" height="2" />
+                  <rect x="7" y="17" width="2" height="2" />
+                  <rect x="11" y="17" width="2" height="2" />
+                </svg>
+              </div>
+              <div className="space-y-0.5">
                 {hoursData.hours.map((h, i) => (
-                  <div key={i} className="flex justify-between text-sm" style={{ color: "var(--warm-grey)" }}>
-                    <span>{h.day}</span>
-                    <span>{h.time}</span>
-                  </div>
+                  <p key={i} style={{ color: "#FFFFFF", fontSize: "14px", lineHeight: 1.6 }}>
+                    {h.day}: {h.time}
+                  </p>
                 ))}
               </div>
             </div>
 
-            {/* Social */}
-            <div className="reveal-item">
-              <div
-                className="aspect-[4/3] flex items-center justify-center mb-6"
-                style={{ background: "var(--charcoal)" }}
-              >
-                <p className="font-display text-white" style={{ fontSize: "18px", fontStyle: "italic" }}>
-                  Follow Us
-                </p>
-              </div>
-              <h3
-                className="text-xs tracking-[0.2em] mb-4 font-semibold"
-                style={{ color: "var(--charcoal)", textTransform: "uppercase" }}
+            {/* WHAT WE ARE UP TO */}
+            <div
+              className="reveal-item text-center"
+              style={{
+                background: "#B5BFB0",
+                borderRadius: "12px",
+                padding: "clamp(32px, 4vw, 56px) clamp(24px, 3vw, 40px)",
+              }}
+            >
+              <p
+                className="tracking-[0.2em] mb-5"
+                style={{
+                  color: "#FFFFFF",
+                  textTransform: "uppercase",
+                  fontSize: "11px",
+                  letterSpacing: "0.2em",
+                }}
               >
                 WHAT WE ARE UP TO
-              </h3>
-              <div className="space-y-2">
+              </p>
+              {/* Heart icon */}
+              <div className="flex justify-center mb-6">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.5">
+                  <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z" />
+                </svg>
+              </div>
+              {/* Social icons grid */}
+              <div className="flex flex-wrap justify-center gap-4">
                 {socialLinks.map((link, i) => (
                   <a
                     key={i}
                     href={link.href}
-                    className="block text-sm hover:opacity-60 transition-opacity"
-                    style={{ color: "var(--warm-grey)", textDecoration: "none" }}
+                    className="flex items-center justify-center hover:opacity-70 transition-opacity"
+                    style={{
+                      width: "44px",
+                      height: "44px",
+                      borderRadius: "50%",
+                      border: "1.5px solid rgba(255,255,255,0.6)",
+                    }}
+                    title={link.label}
                   >
-                    {link.label}
+                    {link.label === "Instagram" && (
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.5">
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                        <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z" />
+                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                      </svg>
+                    )}
+                    {link.label === "Facebook" && (
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.5">
+                        <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" />
+                      </svg>
+                    )}
+                    {link.label === "Houzz" && (
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="white">
+                        <path d="M12 2L5 6v6l-3 2v6l7-4v-6l3-2 3 2v6l7 4v-6l-3-2V6z" />
+                      </svg>
+                    )}
+                    {link.label === "Pinterest" && (
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.5">
+                        <path d="M12 2C6.477 2 2 6.477 2 12c0 4.237 2.636 7.855 6.356 9.312-.088-.791-.167-2.005.035-2.868.181-.78 1.172-4.97 1.172-4.97s-.299-.598-.299-1.482c0-1.388.806-2.425 1.808-2.425.852 0 1.264.64 1.264 1.408 0 .858-.546 2.14-.828 3.33-.236.995.499 1.806 1.48 1.806 1.778 0 3.144-1.874 3.144-4.58 0-2.393-1.72-4.068-4.177-4.068-2.845 0-4.515 2.135-4.515 4.34 0 .859.331 1.781.745 2.282a.3.3 0 01.069.288l-.278 1.133c-.044.183-.145.222-.335.134-1.249-.581-2.03-2.407-2.03-3.874 0-3.154 2.292-6.052 6.608-6.052 3.469 0 6.165 2.473 6.165 5.776 0 3.447-2.173 6.22-5.19 6.22-1.013 0-1.965-.527-2.291-1.148l-.623 2.378c-.226.869-.835 1.958-1.244 2.621.937.29 1.931.446 2.962.446 5.523 0 10-4.477 10-10S17.523 2 12 2z" />
+                      </svg>
+                    )}
                   </a>
                 ))}
               </div>
@@ -214,54 +270,54 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* Explore Our Services — 4-card grid */}
-      <section ref={servicesRef} className="bg-white section-padding">
+      {/* ─── EXPLORE SERVICES: Images with pill buttons below ─── */}
+      <section ref={servicesRef} className="section-padding" style={{ background: "#FFFFFF" }}>
         <div className="container-custom">
           <h2
-            className="reveal-item font-display text-center mb-12"
+            className="reveal-item font-display mb-12"
             style={{
-              fontSize: "clamp(26px, 3vw, 38px)",
+              fontSize: "clamp(24px, 2.5vw, 36px)",
               fontWeight: 300,
               fontStyle: "italic",
-              color: "var(--charcoal)",
+              color: "#2C2C2C",
               lineHeight: 1.3,
             }}
           >
-            Explore Our Services
+            Explore More About What We Offer
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {exploreServices.map((service, i) => (
               <Link
                 key={i}
                 href={service.href}
-                className="reveal-item relative block overflow-hidden group"
-                style={{ aspectRatio: "3/4", borderRadius: "4px", textDecoration: "none" }}
+                className="reveal-item block group"
+                style={{ textDecoration: "none" }}
               >
-                <Image
-                  src={service.image}
-                  alt={service.title}
-                  fill
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                />
+                {/* Portrait image */}
                 <div
-                  className="absolute inset-0"
+                  className="relative overflow-hidden mb-4"
+                  style={{ aspectRatio: "3/4", borderRadius: "8px" }}
+                >
+                  <Image
+                    src={service.image}
+                    alt={service.title}
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                  />
+                </div>
+                {/* Pill button below image */}
+                <div
+                  className="text-center py-3 px-4 transition-all duration-300 group-hover:opacity-80"
                   style={{
-                    background: "linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0.05) 100%)",
+                    background: "#B5BFB0",
+                    borderRadius: "50px",
+                    color: "#FFFFFF",
+                    fontSize: "13px",
+                    letterSpacing: "0.02em",
                   }}
-                />
-                <div className="absolute bottom-0 left-0 right-0 p-6">
-                  <h3
-                    className="font-display text-white"
-                    style={{
-                      fontSize: "clamp(16px, 1.5vw, 20px)",
-                      fontWeight: 400,
-                      fontStyle: "italic",
-                      lineHeight: 1.3,
-                    }}
-                  >
-                    {service.title}
-                  </h3>
+                >
+                  {service.title}
                 </div>
               </Link>
             ))}
@@ -269,8 +325,8 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* CTA Form Section */}
-      <section ref={formRef} style={{ background: "#8A9A84" }} className="section-padding">
+      {/* ─── CTA + FORM SECTION ─── */}
+      <section ref={formRef} style={{ background: "#7A8B7F" }} className="section-padding">
         <div className="container-custom">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
             {/* Left: Text */}
@@ -281,27 +337,46 @@ export default function ContactPage() {
                   fontSize: "clamp(28px, 3.5vw, 42px)",
                   fontWeight: 300,
                   fontStyle: "italic",
-                  color: "var(--white)",
+                  color: "#FFFFFF",
                   lineHeight: 1.3,
                 }}
               >
                 Ready to transform your garden?
               </h2>
               <p
-                className="reveal-item mb-6 leading-relaxed"
-                style={{ color: "rgba(255,255,255,0.8)", fontSize: "15px" }}
+                className="reveal-item mb-5 leading-relaxed"
+                style={{ color: "rgba(255,255,255,0.85)", fontSize: "15px", lineHeight: 1.7 }}
               >
-                Complete the form and we will be in touch within 24 hours to arrange a convenient time for your initial design consultation.
+                Our award-winning team is here to shape a garden that reflects your lifestyle, complements your home and offers a refined outdoor living experience for years to come.
               </p>
-              <p className="reveal-item mt-6">
+              <p
+                className="reveal-item mb-5 leading-relaxed"
+                style={{ color: "rgba(255,255,255,0.85)", fontSize: "15px", lineHeight: 1.7 }}
+              >
+                A brief introduction is all we need to begin. You can schedule a private design consultation and we&apos;ll guide you from there.
+              </p>
+              <p
+                className="reveal-item mb-5 leading-relaxed"
+                style={{ color: "rgba(255,255,255,0.7)", fontSize: "14px", fontWeight: 500 }}
+              >
+                What happens next
+              </p>
+              <p
+                className="reveal-item mb-8 leading-relaxed"
+                style={{ color: "rgba(255,255,255,0.85)", fontSize: "15px", lineHeight: 1.7 }}
+              >
+                We&apos;ll review your details and contact you personally to discuss your vision, understand your priorities, and outline the best way forward for your project.
+              </p>
+              <p className="reveal-item">
                 <a
                   href="tel:01892489923"
                   className="font-display"
                   style={{
-                    color: "var(--white)",
-                    fontSize: "clamp(18px, 2vw, 24px)",
-                    textDecoration: "underline",
-                    textUnderlineOffset: "4px",
+                    color: "#FFFFFF",
+                    fontSize: "clamp(20px, 2.5vw, 28px)",
+                    fontWeight: 300,
+                    fontStyle: "italic",
+                    textDecoration: "none",
                   }}
                 >
                   01892 489 923
@@ -317,41 +392,64 @@ export default function ContactPage() {
                   fontSize: "clamp(20px, 2vw, 26px)",
                   fontWeight: 300,
                   fontStyle: "italic",
-                  color: "var(--white)",
+                  color: "#FFFFFF",
                   lineHeight: 1.4,
                 }}
               >
-                Arrange an initial garden design consultation.
+                Arrange an initial garden design consultation and tell us about your project.
               </p>
               <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-xs mb-2" style={{ color: "var(--white)" }}>First name *</label>
-                    <input type="text" className="w-full px-4 py-3 rounded-sm text-sm focus:outline-none" style={{ background: "rgba(255,255,255,0.9)", border: "none", color: "var(--charcoal)" }} />
+                    <label className="block text-xs mb-2" style={{ color: "rgba(255,255,255,0.8)", fontSize: "12px" }}>First name *</label>
+                    <input
+                      type="text"
+                      className="w-full px-4 py-3 rounded-sm text-sm focus:outline-none"
+                      style={{ background: "rgba(255,255,255,0.9)", border: "none", color: "#2C2C2C" }}
+                    />
                   </div>
                   <div>
-                    <label className="block text-xs mb-2" style={{ color: "var(--white)" }}>Last name *</label>
-                    <input type="text" className="w-full px-4 py-3 rounded-sm text-sm focus:outline-none" style={{ background: "rgba(255,255,255,0.9)", border: "none", color: "var(--charcoal)" }} />
-                  </div>
-                </div>
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-xs mb-2" style={{ color: "var(--white)" }}>Phone *</label>
-                    <input type="tel" className="w-full px-4 py-3 rounded-sm text-sm focus:outline-none" style={{ background: "rgba(255,255,255,0.9)", border: "none", color: "var(--charcoal)" }} />
-                  </div>
-                  <div>
-                    <label className="block text-xs mb-2" style={{ color: "var(--white)" }}>Postcode *</label>
-                    <input type="text" className="w-full px-4 py-3 rounded-sm text-sm focus:outline-none" style={{ background: "rgba(255,255,255,0.9)", border: "none", color: "var(--charcoal)" }} />
+                    <label className="block text-xs mb-2" style={{ color: "rgba(255,255,255,0.8)", fontSize: "12px" }}>Last name *</label>
+                    <input
+                      type="text"
+                      className="w-full px-4 py-3 rounded-sm text-sm focus:outline-none"
+                      style={{ background: "rgba(255,255,255,0.9)", border: "none", color: "#2C2C2C" }}
+                    />
                   </div>
                 </div>
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-xs mb-2" style={{ color: "var(--white)" }}>Email *</label>
-                    <input type="email" className="w-full px-4 py-3 rounded-sm text-sm focus:outline-none" style={{ background: "rgba(255,255,255,0.9)", border: "none", color: "var(--charcoal)" }} />
+                    <label className="block text-xs mb-2" style={{ color: "rgba(255,255,255,0.8)", fontSize: "12px" }}>Phone *</label>
+                    <input
+                      type="tel"
+                      className="w-full px-4 py-3 rounded-sm text-sm focus:outline-none"
+                      style={{ background: "rgba(255,255,255,0.9)", border: "none", color: "#2C2C2C" }}
+                    />
                   </div>
                   <div>
-                    <label className="block text-xs mb-2" style={{ color: "var(--white)" }}>Service</label>
-                    <select className="w-full px-4 py-3 rounded-sm text-sm focus:outline-none appearance-none" style={{ background: "rgba(255,255,255,0.9)", border: "none", color: "var(--charcoal)" }}>
+                    <label className="block text-xs mb-2" style={{ color: "rgba(255,255,255,0.8)", fontSize: "12px" }}>Postcode *</label>
+                    <input
+                      type="text"
+                      className="w-full px-4 py-3 rounded-sm text-sm focus:outline-none"
+                      style={{ background: "rgba(255,255,255,0.9)", border: "none", color: "#2C2C2C" }}
+                    />
+                  </div>
+                </div>
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-xs mb-2" style={{ color: "rgba(255,255,255,0.8)", fontSize: "12px" }}>Email *</label>
+                    <input
+                      type="email"
+                      className="w-full px-4 py-3 rounded-sm text-sm focus:outline-none"
+                      style={{ background: "rgba(255,255,255,0.9)", border: "none", color: "#2C2C2C" }}
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs mb-2" style={{ color: "rgba(255,255,255,0.8)", fontSize: "12px" }}>What service are you looking for?</label>
+                    <select
+                      className="w-full px-4 py-3 rounded-sm text-sm focus:outline-none appearance-none"
+                      style={{ background: "rgba(255,255,255,0.9)", border: "none", color: "#2C2C2C" }}
+                    >
                       <option value="">Select...</option>
                       <option value="design">Garden Design</option>
                       <option value="landscaping">Landscaping &amp; Build</option>
@@ -362,8 +460,14 @@ export default function ContactPage() {
                 </div>
                 <button
                   type="submit"
-                  className="w-full py-4 mt-4 text-sm font-medium tracking-wide rounded-sm transition-all duration-300"
-                  style={{ background: "rgba(255,255,255,0.9)", color: "var(--charcoal)", border: "none", cursor: "pointer" }}
+                  className="w-full py-4 mt-4 text-sm font-medium tracking-wide rounded-sm transition-all duration-300 hover:opacity-90"
+                  style={{
+                    background: "rgba(255,255,255,0.9)",
+                    color: "#2C2C2C",
+                    border: "none",
+                    cursor: "pointer",
+                    fontSize: "14px",
+                  }}
                 >
                   Submit
                 </button>
