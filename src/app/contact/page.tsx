@@ -26,15 +26,33 @@ export default function ContactPage() {
           ═══════════════════════════════════════════ */}
       <section style={{ marginTop: "100px" }}>
         <div className="grid grid-cols-1 lg:grid-cols-2" style={{ minHeight: "80vh" }}>
-          {/* Left: Sage panel with text */}
+          {/* Left: Text panel with background image on mobile */}
           <div
-            className="flex items-center contact-hero-left"
+            className="flex items-center contact-hero-left relative"
             style={{
-              background: "#7D847B",
               padding: "clamp(40px, 5vw, 80px)",
+              minHeight: "60vh",
             }}
           >
-            <div>
+            {/* Background image — visible on mobile, hidden on desktop */}
+            <div className="absolute inset-0 lg:hidden">
+              <Image
+                src={contactHeroData.image}
+                alt="Luxury garden design"
+                fill
+                className="object-cover"
+                sizes="100vw"
+                priority
+              />
+              <div
+                className="absolute inset-0"
+                style={{ background: "linear-gradient(to bottom, rgba(95,100,93,0.85) 0%, rgba(95,100,93,0.92) 100%)" }}
+              />
+            </div>
+            {/* Solid bg on desktop only */}
+            <div className="absolute inset-0 hidden lg:block" style={{ background: "#7D847B" }} />
+
+            <div className="relative z-10">
               <h2
                 className="contact-hero-item tracking-[0.1em] mb-6"
                 style={{
@@ -73,7 +91,7 @@ export default function ContactPage() {
             </div>
           </div>
 
-          {/* Right: Ghosted image (opacity 0.19 like competitor) */}
+          {/* Right: Ghosted image (desktop only) */}
           <div className="relative hidden lg:block" style={{ minHeight: "400px", background: "#FFFFFF" }}>
             <Image
               src={contactHeroData.image}
