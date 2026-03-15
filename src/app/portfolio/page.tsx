@@ -15,7 +15,7 @@ const projectImages = [
   /* project-03 is used as hero banner — skip to avoid duplicate */
   { src: "/images/projects/project-04.jpg", title: "Fencing & Brick Pillars", location: "Stone, Staffordshire" },
   { src: "/images/projects/project-05.jpg", title: "Red Granite Gravel Path", location: "Audley" },
-  /* project-06 is used as hero banner — skip to avoid duplicate */
+  { src: "/images/projects/project-06.jpg", title: "Gold Block Paving Driveway", location: "Wolstanton" },
   { src: "/images/projects/project-07.jpg", title: "Stamped Concrete Driveway", location: "Silverdale" },
   { src: "/images/projects/project-08.jpg", title: "Tarmac Driveway", location: "Burslem" },
   { src: "/images/projects/project-09.jpg", title: "Rustic Block Paving", location: "Madeley" },
@@ -219,7 +219,7 @@ export default function PortfolioPage() {
         style={{ height: "70vh", minHeight: "450px" }}
       >
         <Image
-          src="/images/projects/project-06.jpg"
+          src="/images/portfolio-hero-hd.png"
           alt="Portfolio — Gold Block Paving Driveway"
           fill
           className="object-cover"
