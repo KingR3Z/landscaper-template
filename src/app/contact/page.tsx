@@ -24,7 +24,7 @@ export default function ContactPage() {
       {/* ═══════════════════════════════════════════
           SECTION 1: HERO — 50/50 sage left + ghosted image right
           ═══════════════════════════════════════════ */}
-      <section style={{ marginTop: "85px" }}>
+      <section style={{ marginTop: "100px" }}>
         <div className="grid grid-cols-1 lg:grid-cols-2" style={{ minHeight: "80vh" }}>
           {/* Left: Sage panel with text */}
           <div

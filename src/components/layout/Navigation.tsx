@@ -23,18 +23,39 @@ export default function Navigation() {
       >
         <div
           className="flex items-center justify-between"
-          style={{ padding: "0 clamp(24px, 4vw, 64px)", height: "85px" }}
+          style={{ padding: "0 clamp(24px, 4vw, 64px)", height: "100px" }}
         >
-          {/* Logo — top left, prominent */}
-          <Link href="/" className="shrink-0 mr-8" style={{ display: "flex", alignItems: "center" }}>
+          {/* Logo — top left, prominent (hidden on mobile via CSS) */}
+          <Link href="/" className="desktop-logo shrink-0 mr-8" style={{ alignItems: "center", gap: "12px", textDecoration: "none" }}>
             <Image
               src="/images/logo-gd.png"
               alt="Garden & Driveways"
               width={200}
               height={100}
-              style={{ objectFit: "contain", height: "60px", width: "auto" }}
+              style={{ objectFit: "contain", height: "55px", width: "auto" }}
               priority
             />
+            <div style={{ display: "flex", flexDirection: "column", lineHeight: 1.1 }}>
+              <span style={{
+                fontFamily: "var(--font-display)",
+                fontSize: "22px",
+                fontWeight: 400,
+                color: "var(--charcoal)",
+                letterSpacing: "0.5px",
+              }}>
+                Garden &amp; Driveways
+              </span>
+              <span style={{
+                fontSize: "9px",
+                fontWeight: 400,
+                color: "var(--warm-grey)",
+                letterSpacing: "0.2em",
+                textTransform: "uppercase" as const,
+                marginTop: "3px",
+              }}>
+                Paving &bull; Patios &bull; Landscaping
+              </span>
+            </div>
           </Link>
 
           {/* Desktop Nav — links spread evenly */}
@@ -115,14 +136,36 @@ export default function Navigation() {
           <Link
             href="/"
             className="mobile-brand items-center"
+            style={{ textDecoration: "none", gap: "10px" }}
           >
             <Image
               src="/images/logo-gd.png"
               alt="Garden & Driveways"
               width={160}
               height={80}
-              style={{ objectFit: "contain", height: "50px", width: "auto" }}
+              style={{ objectFit: "contain", height: "45px", width: "auto" }}
             />
+            <div style={{ display: "flex", flexDirection: "column", lineHeight: 1.1 }}>
+              <span style={{
+                fontFamily: "var(--font-display)",
+                fontSize: "18px",
+                fontWeight: 400,
+                color: "var(--charcoal)",
+                letterSpacing: "0.3px",
+              }}>
+                Garden &amp; Driveways
+              </span>
+              <span style={{
+                fontSize: "8px",
+                fontWeight: 400,
+                color: "var(--warm-grey)",
+                letterSpacing: "0.15em",
+                textTransform: "uppercase" as const,
+                marginTop: "2px",
+              }}>
+                Paving &bull; Patios &bull; Landscaping
+              </span>
+            </div>
           </Link>
 
           {/* CTA Button — outline style like reference */}
@@ -179,7 +222,7 @@ export default function Navigation() {
         className={`fixed inset-0 z-40 transition-transform duration-500 ease-in-out lg:hidden ${
           mobileOpen ? "translate-x-0" : "translate-x-full"
         }`}
-        style={{ paddingTop: "85px", background: "#f7f6f3" }}
+        style={{ paddingTop: "100px", background: "#f7f6f3" }}
       >
         <div className="flex flex-col justify-between h-full" style={{ padding: "clamp(24px, 5vh, 48px) 40px clamp(24px, 4vh, 40px)" }}>
           {/* Nav Links — spread evenly */}

@@ -16,7 +16,7 @@ export default function Footer() {
               alt="Garden & Driveways"
               width={180}
               height={90}
-              style={{ objectFit: "contain", height: "80px", width: "auto" }}
+              style={{ objectFit: "contain", height: "100px", width: "auto" }}
             />
           </Link>
           <p

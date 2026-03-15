@@ -148,6 +148,16 @@ h1, h2, h3, h4, h5, h6 {
    Navigation — Responsive (using media queries for reliability)
    ============================================ */
 
+/* Desktop logo: hidden on mobile, flex on desktop */
+.desktop-logo {
+  display: none;
+}
+@media (min-width: 1024px) {
+  .desktop-logo {
+    display: flex;
+  }
+}
+
 /* Desktop nav: hidden on mobile, flex on desktop */
 .desktop-nav {
   display: none;
@@ -170,7 +180,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Mobile brand: visible on mobile, hidden on desktop */
 .mobile-brand {
-  display: block;
+  display: flex;
 }
 @media (min-width: 1024px) {
   .mobile-brand {
