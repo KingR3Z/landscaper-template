@@ -3,7 +3,7 @@ import InnerPageLayout from "@/components/layout/InnerPageLayout";
 export default function AccessibilityPage() {
   return (
     <InnerPageLayout>
-      <section style={{ marginTop: "70px", background: "#FFFFFF" }} className="section-padding">
+      <section style={{ marginTop: "85px", background: "#FFFFFF" }} className="section-padding">
         <div className="container-custom" style={{ maxWidth: "800px" }}>
           <h1
             className="font-display mb-8"

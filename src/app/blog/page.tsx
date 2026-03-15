@@ -81,7 +81,7 @@ export default function BlogPage() {
   return (
     <InnerPageLayout>
       {/* Page Title with decorative bg text */}
-      <section className="bg-white relative overflow-hidden" style={{ paddingTop: "170px", paddingBottom: "clamp(40px, 6vw, 80px)" }}>
+      <section className="bg-white relative overflow-hidden" style={{ paddingTop: "185px", paddingBottom: "clamp(40px, 6vw, 80px)" }}>
         {/* Decorative background text */}
         <div
           className="absolute top-[140px] left-0 right-0 pointer-events-none select-none font-display"

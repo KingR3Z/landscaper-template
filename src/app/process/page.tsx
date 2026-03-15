@@ -169,7 +169,7 @@ export default function ProcessPage() {
   return (
     <InnerPageLayout>
       {/* Hero — split layout like Cedar Springs */}
-      <section className="bg-white" style={{ paddingTop: "170px" }}>
+      <section className="bg-white" style={{ paddingTop: "185px" }}>
         <div className="grid grid-cols-1 lg:grid-cols-2" style={{ minHeight: "60vh" }}>
           {/* Left: text */}
           <div className="flex flex-col justify-center" style={{ padding: "clamp(40px, 6vw, 100px) clamp(30px, 5vw, 80px)" }}>

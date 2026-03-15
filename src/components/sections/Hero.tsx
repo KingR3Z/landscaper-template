@@ -66,7 +66,7 @@ export default function Hero() {
     <section
       ref={sectionRef}
       className="relative w-full overflow-hidden"
-      style={{ height: "calc(100vh - 70px)", marginTop: "70px", minHeight: "500px" }}
+      style={{ height: "calc(100vh - 85px)", marginTop: "85px", minHeight: "500px" }}
     >
       {/* Background Image — with Ken Burns animation */}
       <div

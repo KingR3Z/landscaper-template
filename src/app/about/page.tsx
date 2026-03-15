@@ -25,7 +25,7 @@ export default function AboutPage() {
     <InnerPageLayout>
       {/* About Header — dark sage bg left + image right */}
       {/* Uses CSS @keyframes animation (compositor-driven, always works) */}
-      <section style={{ marginTop: "70px" }}>
+      <section style={{ marginTop: "85px" }}>
         <div className="grid grid-cols-1 lg:grid-cols-2" style={{ minHeight: "70vh" }}>
           <div
             className="flex items-center"

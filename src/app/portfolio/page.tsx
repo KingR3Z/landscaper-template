@@ -8,239 +8,314 @@ import InnerPageLayout from "@/components/layout/InnerPageLayout";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const portfolioImages = [
-  { src: "/images/projects/project-01.jpg", alt: "Contemporary courtyard garden with natural stone paving", aspect: "4/3" },
-  { src: "/images/projects/project-02.jpg", alt: "Luxury rear garden with layered planting and seating area", aspect: "3/4" },
-  { src: "/images/projects/project-03.jpg", alt: "Modern landscaped garden with water feature", aspect: "4/3" },
-  { src: "/images/projects/project-04.jpg", alt: "Country estate garden with structured hedging", aspect: "1/1" },
-  { src: "/images/projects/project-05.jpg", alt: "Lush planting scheme with mixed perennials", aspect: "3/4" },
-  { src: "/images/projects/project-06.jpg", alt: "Urban garden transformation with decking and lighting", aspect: "4/3" },
-  { src: "/images/projects/project-07.jpg", alt: "Mediterranean-inspired terrace garden", aspect: "3/4" },
-  { src: "/images/projects/project-08.jpg", alt: "Formal garden with clipped topiary and gravel paths", aspect: "4/3" },
-  // Repeat to create the "never-ending" feel
-  { src: "/images/projects/project-03.jpg", alt: "Stone terrace with outdoor dining area", aspect: "1/1" },
-  { src: "/images/projects/project-01.jpg", alt: "Walled garden with climbing roses and pergola", aspect: "3/4" },
-  { src: "/images/projects/project-05.jpg", alt: "Herbaceous border with seasonal colour", aspect: "4/3" },
-  { src: "/images/projects/project-07.jpg", alt: "Rooftop garden with container planting", aspect: "4/3" },
-  { src: "/images/projects/project-02.jpg", alt: "Family garden with lawn and play area", aspect: "3/4" },
-  { src: "/images/projects/project-06.jpg", alt: "Shaded woodland garden with ferns", aspect: "4/3" },
-  { src: "/images/projects/project-04.jpg", alt: "Courtyard garden with raised beds and water feature", aspect: "1/1" },
-  { src: "/images/projects/project-08.jpg", alt: "Gravel garden with drought-tolerant planting", aspect: "3/4" },
-  { src: "/images/projects/project-01.jpg", alt: "Contemporary garden with corten steel edging", aspect: "4/3" },
-  { src: "/images/projects/project-03.jpg", alt: "Cottage garden with mixed planting", aspect: "3/4" },
-  { src: "/images/projects/project-06.jpg", alt: "Evening garden with landscape lighting", aspect: "4/3" },
-  { src: "/images/projects/project-05.jpg", alt: "Naturalistic meadow planting", aspect: "1/1" },
+const projects = [
+  { src: "/images/projects/project-01.jpg", title: "Block Paved Driveway", location: "Newcastle-under-Lyme", description: "A striking herringbone-pattern driveway built with premium block paving, complete with charcoal border edging and integrated drainage." },
+  { src: "/images/projects/project-02.jpg", title: "Artificial Lawn & Patio", location: "Stoke-on-Trent", description: "Full rear garden transformation featuring a low-maintenance artificial lawn, Indian sandstone patio, and contemporary fencing." },
+  { src: "/images/projects/project-03.jpg", title: "Herringbone Block Paving", location: "Kidsgrove", description: "Classic herringbone driveway with a natural stone border, designed to complement the property's traditional character." },
+  { src: "/images/projects/project-04.jpg", title: "Fencing & Brick Pillars", location: "Stone, Staffordshire", description: "Bespoke close-board fencing with hand-built brick pillars, providing privacy and a polished finish to the garden boundary." },
+  { src: "/images/projects/project-05.jpg", title: "Red Granite Gravel Path", location: "Audley", description: "A winding red granite pathway through structured planting beds, with steel edging for clean, lasting lines." },
+  { src: "/images/projects/project-06.jpg", title: "Gold Block Paving Driveway", location: "Wolstanton", description: "Warm gold block paving with a sweeping curved design, tailored to fit the sloped approach of this semi-detached property." },
+  { src: "/images/projects/project-07.jpg", title: "Stamped Concrete Driveway", location: "Silverdale", description: "A stamped concrete driveway in a natural stone finish — durable, low-maintenance, and with a seamless appearance." },
+  { src: "/images/projects/project-08.jpg", title: "Tarmac Driveway", location: "Burslem", description: "Clean, professional tarmac driveway with block-paved apron and edging — built for everyday use and kerb appeal." },
 ];
 
 export default function PortfolioPage() {
-  const galleryRef = useRef<HTMLDivElement>(null);
-  const headerRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const heroRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Animate header
-    if (headerRef.current) {
-      const headerItems = headerRef.current.querySelectorAll(".header-reveal");
-      gsap.fromTo(
-        headerItems,
-        { opacity: 0, y: 40 },
-        { opacity: 1, y: 0, duration: 1, ease: "power3.out", stagger: 0.15, delay: 0.3 }
-      );
-    }
+    const ctx = gsap.context(() => {
+      // Hero parallax
+      if (heroRef.current) {
+        const heroImg = heroRef.current.querySelector(".hero-img");
+        const heroContent = heroRef.current.querySelectorAll(".hero-reveal");
 
-    // Animate each gallery image with ScrollTrigger
-    if (galleryRef.current) {
-      const items = galleryRef.current.querySelectorAll(".gallery-item");
-      items.forEach((item) => {
         gsap.fromTo(
-          item,
-          {
-            opacity: 0,
-            y: 80,
-            scale: 0.95,
-          },
-          {
-            opacity: 1,
-            y: 0,
-            scale: 1,
-            duration: 0.9,
-            ease: "power2.out",
-            scrollTrigger: {
-              trigger: item,
-              start: "top 90%",
-              end: "top 50%",
-              toggleActions: "play none none none",
-            },
-          }
+          heroContent,
+          { opacity: 0, y: 50 },
+          { opacity: 1, y: 0, duration: 1.2, ease: "power3.out", stagger: 0.15, delay: 0.3 }
         );
+
+        if (heroImg) {
+          gsap.to(heroImg, {
+            yPercent: 20,
+            ease: "none",
+            scrollTrigger: {
+              trigger: heroRef.current,
+              start: "top top",
+              end: "bottom top",
+              scrub: true,
+            },
+          });
+        }
+      }
+
+      // Each project section — scroll-driven reveal
+      const sections = containerRef.current?.querySelectorAll(".project-section");
+      sections?.forEach((section) => {
+        const img = section.querySelector(".project-img");
+        const overlay = section.querySelector(".project-overlay");
+        const text = section.querySelectorAll(".project-text-reveal");
+        const counter = section.querySelector(".project-counter");
+
+        // Parallax on image
+        if (img) {
+          gsap.fromTo(
+            img,
+            { scale: 1.15, yPercent: -8 },
+            {
+              scale: 1,
+              yPercent: 8,
+              ease: "none",
+              scrollTrigger: {
+                trigger: section,
+                start: "top bottom",
+                end: "bottom top",
+                scrub: true,
+              },
+            }
+          );
+        }
+
+        // Overlay darkens as you scroll into view
+        if (overlay) {
+          gsap.fromTo(
+            overlay,
+            { opacity: 0.1 },
+            {
+              opacity: 0.45,
+              ease: "none",
+              scrollTrigger: {
+                trigger: section,
+                start: "top bottom",
+                end: "center center",
+                scrub: true,
+              },
+            }
+          );
+        }
+
+        // Text reveals
+        if (text.length) {
+          gsap.fromTo(
+            text,
+            { opacity: 0, y: 60 },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.8,
+              ease: "power3.out",
+              stagger: 0.12,
+              scrollTrigger: {
+                trigger: section,
+                start: "top 40%",
+                toggleActions: "play none none none",
+              },
+            }
+          );
+        }
+
+        // Counter
+        if (counter) {
+          gsap.fromTo(
+            counter,
+            { opacity: 0, x: -20 },
+            {
+              opacity: 1,
+              x: 0,
+              duration: 0.6,
+              ease: "power2.out",
+              scrollTrigger: {
+                trigger: section,
+                start: "top 50%",
+                toggleActions: "play none none none",
+              },
+            }
+          );
+        }
       });
-    }
+    }, containerRef);
 
-    return () => {
-      ScrollTrigger.getAll().forEach((t) => t.kill());
-    };
+    return () => ctx.revert();
   }, []);
-
-  // Split images into two columns for masonry layout
-  const col1 = portfolioImages.filter((_, i) => i % 2 === 0);
-  const col2 = portfolioImages.filter((_, i) => i % 2 === 1);
-
-  // Three-column split for desktop
-  const deskCol1 = portfolioImages.filter((_, i) => i % 3 === 0);
-  const deskCol2 = portfolioImages.filter((_, i) => i % 3 === 1);
-  const deskCol3 = portfolioImages.filter((_, i) => i % 3 === 2);
-
-  const renderImage = (img: (typeof portfolioImages)[0], i: number) => (
-    <div
-      key={`${img.src}-${i}`}
-      className="gallery-item group relative overflow-hidden"
-      style={{ borderRadius: "6px", marginBottom: "16px" }}
-    >
-      <div
-        className="relative overflow-hidden"
-        style={{ aspectRatio: img.aspect }}
-      >
-        <Image
-          src={img.src}
-          alt={img.alt}
-          fill
-          className="object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-110"
-          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-        />
-        {/* Hover overlay */}
-        <div
-          className="absolute inset-0 flex items-end p-5 opacity-0 group-hover:opacity-100 transition-all duration-500"
-          style={{ background: "linear-gradient(transparent 40%, rgba(0,0,0,0.55))" }}
-        >
-          <p className="text-white text-sm leading-snug font-light tracking-wide">
-            {img.alt}
-          </p>
-        </div>
-      </div>
-    </div>
-  );
 
   return (
     <InnerPageLayout>
-      {/* Hero Header — minimal, text-only with background image */}
-      <section
-        className="relative w-full overflow-hidden"
-        style={{ height: "70vh", minHeight: "500px" }}
-      >
-        <Image
-          src="/images/projects/project-06.jpg"
-          alt="Portfolio"
-          fill
-          className="object-cover"
-          priority
-          sizes="100vw"
-        />
-        <div className="absolute inset-0 bg-black/35" />
-        <div
-          ref={headerRef}
-          className="absolute inset-0 flex flex-col justify-center items-center text-center container-custom"
+      <div ref={containerRef}>
+        {/* Hero */}
+        <section
+          ref={heroRef}
+          className="relative w-full overflow-hidden flex items-center justify-center"
+          style={{ height: "100vh", minHeight: "600px" }}
         >
-          <p
-            className="header-reveal text-white/60 tracking-[0.25em] mb-4"
-            style={{ fontSize: "clamp(10px, 1vw, 13px)", textTransform: "uppercase", fontWeight: 400, opacity: 0 }}
-          >
-            OUR WORK
-          </p>
-          <h1
-            className="header-reveal font-display text-white max-w-3xl"
-            style={{
-              fontSize: "clamp(36px, 5vw, 72px)",
-              fontWeight: 400,
-              lineHeight: 1.15,
-              textTransform: "uppercase",
-              letterSpacing: "0.05em",
-              color: "#FFFFFF",
-              opacity: 0,
-            }}
-          >
-            Portfolio
-          </h1>
-          <p
-            className="header-reveal mt-6 max-w-xl"
-            style={{ color: "rgba(255,255,255,0.7)", fontSize: "15px", lineHeight: 1.8, opacity: 0 }}
-          >
-            Every garden tells a story. Scroll through our completed projects and imagine what we could create for you.
-          </p>
-        </div>
-      </section>
-
-      {/* Never-ending masonry gallery */}
-      <section ref={galleryRef} style={{ background: "#f7f6f3" }} className="py-12 md:py-20">
-        <div className="container-custom">
-          {/* Mobile: single column */}
-          <div className="block md:hidden">
-            <div className="flex flex-col gap-4">
-              {portfolioImages.map((img, i) => renderImage(img, i))}
-            </div>
+          <div className="hero-img absolute inset-0">
+            <Image
+              src="/images/projects/project-06.jpg"
+              alt="Portfolio hero"
+              fill
+              className="object-cover"
+              priority
+              sizes="100vw"
+            />
+          </div>
+          <div className="absolute inset-0 bg-black/40" />
+          <div className="relative z-10 text-center px-6">
+            <p
+              className="hero-reveal text-white/50 tracking-[0.3em] mb-5"
+              style={{ fontSize: "clamp(10px, 1vw, 12px)", textTransform: "uppercase", fontWeight: 400, opacity: 0 }}
+            >
+              Our Work
+            </p>
+            <h1
+              className="hero-reveal font-display text-white"
+              style={{
+                fontSize: "clamp(40px, 7vw, 88px)",
+                fontWeight: 300,
+                lineHeight: 1.05,
+                letterSpacing: "0.02em",
+                opacity: 0,
+              }}
+            >
+              Portfolio
+            </h1>
+            <div
+              className="hero-reveal mx-auto mt-8"
+              style={{ width: "40px", height: "1px", background: "rgba(255,255,255,0.3)", opacity: 0 }}
+            />
+            <p
+              className="hero-reveal mt-6 text-white/60 max-w-md mx-auto"
+              style={{ fontSize: "15px", lineHeight: 1.8, opacity: 0 }}
+            >
+              Scroll to explore our completed transformations
+            </p>
           </div>
 
-          {/* Tablet: two columns */}
-          <div className="hidden md:flex lg:hidden gap-4">
-            <div className="flex-1 flex flex-col">
-              {col1.map((img, i) => renderImage(img, i))}
-            </div>
-            <div className="flex-1 flex flex-col" style={{ marginTop: "60px" }}>
-              {col2.map((img, i) => renderImage(img, i))}
-            </div>
+          {/* Scroll indicator */}
+          <div
+            className="hero-reveal absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+            style={{ opacity: 0 }}
+          >
+            <div
+              className="w-[1px] h-10 animate-pulse"
+              style={{ background: "linear-gradient(to bottom, transparent, rgba(255,255,255,0.5))" }}
+            />
           </div>
+        </section>
 
-          {/* Desktop: three columns with offset */}
-          <div className="hidden lg:flex gap-5">
-            <div className="flex-1 flex flex-col">
-              {deskCol1.map((img, i) => renderImage(img, i))}
+        {/* Project Sections — full viewport scroll showcase */}
+        {projects.map((project, i) => (
+          <section
+            key={project.src}
+            className="project-section relative w-full overflow-hidden flex items-end"
+            style={{ height: "100vh", minHeight: "600px" }}
+          >
+            {/* Background image with parallax */}
+            <div className="absolute inset-0 overflow-hidden">
+              <div className="project-img absolute inset-[-15%] w-[130%] h-[130%]">
+                <Image
+                  src={project.src}
+                  alt={project.title}
+                  fill
+                  className="object-cover"
+                  sizes="100vw"
+                />
+              </div>
             </div>
-            <div className="flex-1 flex flex-col" style={{ marginTop: "80px" }}>
-              {deskCol2.map((img, i) => renderImage(img, i))}
+
+            {/* Dark overlay — uniform for parallax feel */}
+            <div className="project-overlay absolute inset-0 bg-black" />
+
+            {/* Bottom gradient — always visible for text legibility */}
+            <div
+              className="absolute inset-0 pointer-events-none"
+              style={{ background: "linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 35%, transparent 60%)" }}
+            />
+
+            {/* Project counter — top left */}
+            <div
+              className="project-counter absolute top-8 left-6 md:top-12 md:left-12 z-10"
+              style={{ opacity: 0 }}
+            >
+              <span
+                className="text-white/30 font-display"
+                style={{ fontSize: "clamp(12px, 1.5vw, 14px)", letterSpacing: "0.2em" }}
+              >
+                {String(i + 1).padStart(2, "0")} / {String(projects.length).padStart(2, "0")}
+              </span>
             </div>
-            <div className="flex-1 flex flex-col" style={{ marginTop: "40px" }}>
-              {deskCol3.map((img, i) => renderImage(img, i))}
+
+            {/* Content — bottom left */}
+            <div className="relative z-10 w-full p-6 pb-12 md:p-12 md:pb-16 lg:p-16 lg:pb-20">
+              <div className="max-w-2xl">
+                <p
+                  className="project-text-reveal text-white/60 tracking-[0.25em] mb-3"
+                  style={{ fontSize: "clamp(10px, 0.9vw, 12px)", textTransform: "uppercase", fontWeight: 400, opacity: 0 }}
+                >
+                  {project.location}
+                </p>
+                <h2
+                  className="project-text-reveal font-display text-white mb-4"
+                  style={{
+                    fontSize: "clamp(28px, 4vw, 56px)",
+                    fontWeight: 300,
+                    lineHeight: 1.1,
+                    letterSpacing: "0.01em",
+                    opacity: 0,
+                  }}
+                >
+                  {project.title}
+                </h2>
+                <p
+                  className="project-text-reveal text-white/70 max-w-lg"
+                  style={{ fontSize: "clamp(14px, 1.1vw, 16px)", lineHeight: 1.75, opacity: 0 }}
+                >
+                  {project.description}
+                </p>
+              </div>
             </div>
+          </section>
+        ))}
+
+        {/* CTA Section */}
+        <section style={{ background: "var(--charcoal)" }} className="py-20 md:py-28">
+          <div className="container-custom text-center">
+            <h2
+              className="font-display mb-4"
+              style={{
+                fontSize: "clamp(26px, 3.5vw, 48px)",
+                fontWeight: 300,
+                fontStyle: "italic",
+                color: "#FFFFFF",
+                lineHeight: 1.3,
+              }}
+            >
+              Let Us Create Something Beautiful For You
+            </h2>
+            <p
+              className="max-w-xl mx-auto mb-10"
+              style={{ color: "rgba(255,255,255,0.5)", fontSize: "15px", lineHeight: 1.8 }}
+            >
+              Every project in our portfolio began with a simple conversation.
+              Tell us about your space and we will bring your vision to life.
+            </p>
+            <a
+              href="/contact"
+              className="inline-block font-medium tracking-wide transition-all duration-300 hover:opacity-90"
+              style={{
+                background: "var(--sage)",
+                color: "#FFFFFF",
+                padding: "16px 44px",
+                borderRadius: "50px",
+                fontSize: "14px",
+                letterSpacing: "0.5px",
+                textDecoration: "none",
+              }}
+            >
+              Book a Design Consultation
+            </a>
           </div>
-        </div>
-      </section>
-
-      {/* Floating CTA at bottom */}
-      <section style={{ background: "var(--charcoal)" }} className="py-20">
-        <div className="container-custom text-center">
-          <h2
-            className="font-display mb-4"
-            style={{
-              fontSize: "clamp(26px, 3vw, 42px)",
-              fontWeight: 300,
-              fontStyle: "italic",
-              color: "#FFFFFF",
-              lineHeight: 1.3,
-            }}
-          >
-            Let Us Create Something Beautiful For You
-          </h2>
-          <p
-            className="max-w-xl mx-auto mb-8"
-            style={{ color: "rgba(255,255,255,0.6)", fontSize: "15px", lineHeight: 1.8 }}
-          >
-            Every project in our portfolio began with a simple conversation. Tell us about your space and we will bring your vision to life.
-          </p>
-          <a
-            href="/contact"
-            className="inline-block font-medium tracking-wide transition-all duration-300 hover:opacity-90"
-            style={{
-              background: "var(--sage)",
-              color: "#FFFFFF",
-              padding: "16px 40px",
-              borderRadius: "50px",
-              fontSize: "14px",
-              letterSpacing: "0.5px",
-              textDecoration: "none",
-            }}
-          >
-            Book a Design Consultation
-          </a>
-        </div>
-      </section>
+        </section>
+      </div>
     </InnerPageLayout>
   );
 }

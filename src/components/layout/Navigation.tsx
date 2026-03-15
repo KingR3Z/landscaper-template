@@ -23,16 +23,16 @@ export default function Navigation() {
       >
         <div
           className="flex items-center justify-between"
-          style={{ padding: "0 clamp(24px, 4vw, 64px)", height: "70px" }}
+          style={{ padding: "0 clamp(24px, 4vw, 64px)", height: "85px" }}
         >
-          {/* Logo — top left */}
-          <Link href="/" className="desktop-nav shrink-0 mr-6" style={{ display: "flex", alignItems: "center" }}>
+          {/* Logo — top left, prominent */}
+          <Link href="/" className="shrink-0 mr-8" style={{ display: "flex", alignItems: "center" }}>
             <Image
               src="/images/logo-gd.png"
               alt="Garden & Driveways"
-              width={120}
-              height={60}
-              style={{ objectFit: "contain", height: "50px", width: "auto" }}
+              width={200}
+              height={100}
+              style={{ objectFit: "contain", height: "60px", width: "auto" }}
               priority
             />
           </Link>
@@ -119,9 +119,9 @@ export default function Navigation() {
             <Image
               src="/images/logo-gd.png"
               alt="Garden & Driveways"
-              width={100}
-              height={50}
-              style={{ objectFit: "contain", height: "40px", width: "auto" }}
+              width={160}
+              height={80}
+              style={{ objectFit: "contain", height: "50px", width: "auto" }}
             />
           </Link>
 
@@ -179,7 +179,7 @@ export default function Navigation() {
         className={`fixed inset-0 z-40 transition-transform duration-500 ease-in-out lg:hidden ${
           mobileOpen ? "translate-x-0" : "translate-x-full"
         }`}
-        style={{ paddingTop: "70px", background: "#f7f6f3" }}
+        style={{ paddingTop: "85px", background: "#f7f6f3" }}
       >
         <div className="flex flex-col justify-between h-full" style={{ padding: "clamp(24px, 5vh, 48px) 40px clamp(24px, 4vh, 40px)" }}>
           {/* Nav Links — spread evenly */}
