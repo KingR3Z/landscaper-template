@@ -21,7 +21,7 @@ export default function Navigation() {
         style={{ borderBottom: "1px solid #e8e6e1" }}
       >
         <div
-          className="flex items-center justify-between"
+          className="flex items-center justify-between relative"
           style={{ padding: "0 clamp(24px, 4vw, 64px)", height: "100px" }}
         >
           {/* Logo — top left, text only (hidden on mobile via CSS) */}
@@ -123,16 +123,23 @@ export default function Navigation() {
             ))}
           </nav>
 
-          {/* Mobile: Logo text only (hidden on desktop via CSS) */}
+          {/* Mobile: Logo text only, centered (hidden on desktop via CSS) */}
           <Link
             href="/"
-            className="mobile-brand items-center"
-            style={{ textDecoration: "none" }}
+            className="mobile-brand"
+            style={{
+              textDecoration: "none",
+              position: "absolute",
+              left: "50%",
+              top: "50%",
+              transform: "translate(-50%, -50%)",
+              textAlign: "center",
+            }}
           >
-            <div style={{ display: "flex", flexDirection: "column", lineHeight: 1.1 }}>
+            <div style={{ display: "flex", flexDirection: "column", lineHeight: 1.1, alignItems: "center" }}>
               <span style={{
                 fontFamily: "var(--font-display)",
-                fontSize: "18px",
+                fontSize: "22px",
                 fontWeight: 400,
                 color: "var(--charcoal)",
                 letterSpacing: "0.3px",
@@ -140,12 +147,12 @@ export default function Navigation() {
                 Garden &amp; Driveways
               </span>
               <span style={{
-                fontSize: "8px",
+                fontSize: "9px",
                 fontWeight: 400,
                 color: "var(--warm-grey)",
                 letterSpacing: "0.15em",
                 textTransform: "uppercase" as const,
-                marginTop: "2px",
+                marginTop: "3px",
               }}>
                 Paving &bull; Patios &bull; Landscaping
               </span>
@@ -177,6 +184,7 @@ export default function Navigation() {
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
             className="mobile-hamburger flex flex-col gap-[5px] p-2"
+            style={{ position: "absolute", right: "clamp(24px, 4vw, 64px)", top: "50%", transform: "translateY(-50%)" }}
             aria-label="Toggle menu"
           >
             <span
