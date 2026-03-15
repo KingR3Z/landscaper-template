@@ -1,8 +1,7 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import gsap from "gsap";
-import Image from "next/image";
 import Link from "next/link";
 import { heroData } from "@/data/homepage";
 
@@ -11,7 +10,7 @@ export default function Hero() {
   const titleRef = useRef<HTMLHeadingElement>(null);
   const subtitleRef = useRef<HTMLParagraphElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
-  const videoLoaded = false;
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -68,24 +67,19 @@ export default function Hero() {
       className="relative w-full overflow-hidden"
       style={{ height: "calc(100vh - 100px)", marginTop: "100px", minHeight: "500px" }}
     >
-      {/* Background Image — with Ken Burns animation */}
-      <div
-        className="absolute inset-0 hero-ken-burns"
-        style={{
-          opacity: videoLoaded ? 0 : 1,
-          transition: "opacity 1s ease",
-          zIndex: 0,
-        }}
+      {/* Background Video — project-03 herringbone block paving, animated with Kling 3.0 */}
+      <video
+        ref={videoRef}
+        autoPlay
+        muted
+        loop
+        playsInline
+        poster="/images/hero-driveway-4k.jpg"
+        className="absolute inset-0 w-full h-full object-cover"
+        style={{ zIndex: 1 }}
       >
-        <Image
-          src={heroData.image}
-          alt="Luxury garden landscape"
-          fill
-          className="object-cover"
-          priority
-          sizes="100vw"
-        />
-      </div>
+        <source src="/videos/hero-bg.mp4" type="video/mp4" />
+      </video>
 
       {/* Dark Overlay — strong gradient for white text readability */}
       <div
