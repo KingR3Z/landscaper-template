@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { mainNav } from "@/data/navigation";
 
 export default function Navigation() {
@@ -25,16 +24,8 @@ export default function Navigation() {
           className="flex items-center justify-between"
           style={{ padding: "0 clamp(24px, 4vw, 64px)", height: "100px" }}
         >
-          {/* Logo — top left, prominent (hidden on mobile via CSS) */}
-          <Link href="/" className="desktop-logo shrink-0 mr-8" style={{ alignItems: "center", gap: "12px", textDecoration: "none" }}>
-            <Image
-              src="/images/logo-gd.png"
-              alt="Garden & Driveways"
-              width={200}
-              height={100}
-              style={{ objectFit: "contain", height: "55px", width: "auto" }}
-              priority
-            />
+          {/* Logo — top left, text only (hidden on mobile via CSS) */}
+          <Link href="/" className="desktop-logo shrink-0 mr-8" style={{ alignItems: "center", textDecoration: "none" }}>
             <div style={{ display: "flex", flexDirection: "column", lineHeight: 1.1 }}>
               <span style={{
                 fontFamily: "var(--font-display)",
@@ -132,19 +123,12 @@ export default function Navigation() {
             ))}
           </nav>
 
-          {/* Mobile: Logo (hidden on desktop via CSS) */}
+          {/* Mobile: Logo text only (hidden on desktop via CSS) */}
           <Link
             href="/"
             className="mobile-brand items-center"
-            style={{ textDecoration: "none", gap: "10px" }}
+            style={{ textDecoration: "none" }}
           >
-            <Image
-              src="/images/logo-gd.png"
-              alt="Garden & Driveways"
-              width={160}
-              height={80}
-              style={{ objectFit: "contain", height: "45px", width: "auto" }}
-            />
             <div style={{ display: "flex", flexDirection: "column", lineHeight: 1.1 }}>
               <span style={{
                 fontFamily: "var(--font-display)",
