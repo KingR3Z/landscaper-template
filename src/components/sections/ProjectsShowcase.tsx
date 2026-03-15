@@ -50,7 +50,7 @@ export default function ProjectsShowcase() {
           {visibleProjects.map((project, i) => (
             <Link
               key={`${project.slug}-${startIndex}-${i}`}
-              href="/our-gardens"
+              href="/portfolio"
               className="reveal-item group relative block overflow-hidden"
               style={{ aspectRatio: "4/3", borderRadius: "16px" }}
             >

@@ -219,39 +219,44 @@ export default function PortfolioPage() {
         style={{ height: "70vh", minHeight: "450px" }}
       >
         <Image
-          src="/images/projects/project-06.jpg"
-          alt="Portfolio"
+          src="/images/projects/project-03.jpg"
+          alt="Portfolio — Herringbone Block Paving Driveway"
           fill
           className="object-cover"
           priority
           sizes="100vw"
         />
-        <div className="absolute inset-0 bg-black/40" />
+        <div
+          className="absolute inset-0"
+          style={{ background: "linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.55) 100%)" }}
+        />
         <div className="relative z-10 text-center px-6">
           <p
-            className="hero-animate hero-animate-1 text-white/50 tracking-[0.3em] mb-4"
-            style={{ fontSize: "clamp(10px, 1vw, 12px)", textTransform: "uppercase", fontWeight: 400 }}
+            className="hero-animate hero-animate-1 tracking-[0.3em] mb-4"
+            style={{ fontSize: "clamp(10px, 1vw, 12px)", textTransform: "uppercase", fontWeight: 400, color: "rgba(255,255,255,0.85)" }}
           >
             Our Work
           </p>
           <h1
-            className="hero-animate hero-animate-2 font-display text-white"
+            className="hero-animate hero-animate-2 font-display"
             style={{
               fontSize: "clamp(36px, 6vw, 76px)",
               fontWeight: 300,
               lineHeight: 1.1,
               letterSpacing: "0.02em",
+              color: "#FFFFFF",
+              textShadow: "0 2px 20px rgba(0,0,0,0.5)",
             }}
           >
             Portfolio
           </h1>
           <div
             className="hero-animate hero-animate-3 mx-auto mt-6"
-            style={{ width: "40px", height: "1px", background: "rgba(255,255,255,0.3)" }}
+            style={{ width: "40px", height: "1px", background: "rgba(255,255,255,0.5)" }}
           />
           <p
-            className="hero-animate hero-animate-4 mt-5 text-white/55 max-w-md mx-auto"
-            style={{ fontSize: "15px", lineHeight: 1.8 }}
+            className="hero-animate hero-animate-4 mt-5 max-w-md mx-auto"
+            style={{ fontSize: "15px", lineHeight: 1.8, color: "rgba(255,255,255,0.9)" }}
           >
             Scroll through our completed transformations
           </p>

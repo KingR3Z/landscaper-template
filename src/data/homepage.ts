@@ -79,7 +79,7 @@ export const landscapingData = {
     "Whether it's a new block paving driveway, a garden patio, artificial lawn or complete outdoor transformation — we handle everything from groundwork to finishing touches.",
     "Our experienced team works together on every project, ensuring consistent quality from start to finish. We take pride in leaving every site clean and every customer happy.",
   ],
-  cta: { label: "View Our Projects", href: "/our-gardens" },
+  cta: { label: "View Our Projects", href: "/portfolio" },
   image: "/images/landscaping-main-v2.jpg",
 };
 

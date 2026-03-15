@@ -10,7 +10,7 @@ export const mainNav = {
         { label: "Our Gardens", href: "/our-gardens" },
       ],
     },
-    { label: "Portfolio", href: "/our-gardens" },
+    { label: "Portfolio", href: "/portfolio" },
     { label: "About Us", href: "/about" },
     { label: "Contact Us", href: "/contact" },
     { label: "News", href: "/news" },
@@ -32,7 +32,7 @@ export const footerData = {
     links: [
       { label: "Home", href: "/" },
       { label: "About", href: "/about" },
-      { label: "Portfolio", href: "/our-gardens" },
+      { label: "Portfolio", href: "/portfolio" },
       { label: "Contact Us", href: "/contact" },
     ],
     legal: [
