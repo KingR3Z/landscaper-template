@@ -3,13 +3,7 @@ export const mainNav = {
   cta: { label: "Get a Free Quote", href: "/contact" },
   links: [
     { label: "Home", href: "/" },
-    {
-      label: "Services",
-      href: "/garden-design",
-      children: [
-        { label: "Our Gardens", href: "/our-gardens" },
-      ],
-    },
+    { label: "Services", href: "/garden-design" },
     { label: "Portfolio", href: "/portfolio" },
     { label: "About Us", href: "/about" },
     { label: "Contact Us", href: "/contact" },
