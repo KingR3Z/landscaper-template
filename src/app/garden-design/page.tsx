@@ -7,12 +7,12 @@ import PageHero from "@/components/sections/PageHero";
 import { useReveal } from "@/hooks/useReveal";
 
 const designProcess = [
-  { step: "01", title: "Garden Design Consultation", text: "An initial conversation to understand your aspirations, lifestyle, and how you want to use your outdoor space. We visit the site to assess conditions, orientation, and context." },
-  { step: "02", title: "Garden Design Proposals", text: "We prepare two distinct concept options, each exploring different spatial arrangements, materials, and planting themes — giving you meaningful choices." },
-  { step: "03", title: "Design Brief Meeting", text: "A detailed meeting to refine your chosen direction. We discuss materials, planting preferences, lighting, and any special features you would like to include." },
-  { step: "04", title: "Garden Survey", text: "A thorough site survey capturing levels, boundaries, existing features, soil conditions, and services. This forms the foundation of all technical drawings." },
-  { step: "05", title: "Concept Design Options", text: "Fully developed concept designs with annotated plans, 3D visualisations, and mood boards showing materials, planting palettes, and key design features." },
-  { step: "06", title: "Design Presentation", text: "A comprehensive design presentation including construction drawings, planting plans, specifications, and a detailed project estimate for the build phase." },
+  { step: "01", title: "Free Site Visit & Quote", text: "We visit your property, take measurements, discuss your ideas and requirements, and provide an honest, no-obligation quote with no hidden extras." },
+  { step: "02", title: "Material Selection", text: "We help you choose the right materials for your project — whether that's block paving colours, patio stone, fencing type, or artificial grass. We bring samples so you can see and feel the options." },
+  { step: "03", title: "Preparation & Groundwork", text: "We excavate, level, and prepare the ground properly. Good foundations are everything — we never cut corners on sub-base, drainage, or compaction." },
+  { step: "04", title: "Construction & Installation", text: "Our experienced team carries out all the work ourselves — no subcontractors. We keep you updated throughout and leave the site clean and tidy each day." },
+  { step: "05", title: "Finishing Touches", text: "From pointing and sealing to edging and final clean-up, we take pride in the small details that make a big difference to the finished result." },
+  { step: "06", title: "Final Walkthrough", text: "We walk you through the completed project, make sure you're completely happy, and provide aftercare advice to keep everything looking its best." },
 ];
 
 export default function GardenDesignPage() {
@@ -25,8 +25,8 @@ export default function GardenDesignPage() {
   return (
     <InnerPageLayout>
       <PageHero
-        title="Garden Design"
-        subtitle="Bespoke luxury garden design for exceptional homes"
+        title="Our Services"
+        subtitle="Driveways, patios, gardens & landscaping across Staffordshire"
         image="/images/garden-premium-v2.jpg"
       />
 
@@ -45,16 +45,16 @@ export default function GardenDesignPage() {
                   lineHeight: 1.3,
                 }}
               >
-                Bespoke Garden Design, Shaped Around Your Home
+                Premium Driveways, Patios & Landscaping
               </h2>
               <p className="reveal-item mb-5 leading-relaxed" style={{ color: "var(--warm-grey)", fontSize: "15px" }}>
-                Our design process is deeply collaborative. We believe the best gardens emerge from a genuine understanding of how you live, what inspires you, and how your outdoor space should feel. Every project is different — and that&apos;s the point.
+                We specialise in transforming outdoor spaces across Staffordshire — from striking block paving driveways to beautifully finished patios, garden landscaping, fencing, and artificial lawns. Every project is built to the highest standard using premium materials from trusted suppliers like Marshalls, Bradstone, and Tobermore.
               </p>
               <p className="reveal-item mb-5 leading-relaxed" style={{ color: "var(--warm-grey)", fontSize: "15px" }}>
-                From initial site visit through to detailed construction drawings, our landscape architects and designers work closely with you at every stage, ensuring the final design is something truly personal.
+                Our hands-on team manages every project from start to finish — no subcontractors, no shortcuts. We take pride in delivering craftsmanship that stands the test of time, with attention to detail that sets us apart.
               </p>
               <p className="reveal-item leading-relaxed" style={{ color: "var(--warm-grey)", fontSize: "15px" }}>
-                Whether you are reimagining a compact London courtyard or transforming a country estate, our approach remains the same: listen carefully, design thoughtfully, and deliver beautifully.
+                Whether you&apos;re looking for a complete driveway renovation, a new patio for entertaining, or a full garden transformation, we bring the same level of care and quality to every job.
               </p>
               <div className="reveal-item mt-8">
                 <Link
@@ -72,7 +72,7 @@ export default function GardenDesignPage() {
                     transition: "all 0.3s ease",
                   }}
                 >
-                  Begin Your Garden Design Consultation <span>→</span>
+                  Get a Free Quote <span>→</span>
                 </Link>
               </div>
             </div>
@@ -118,16 +118,16 @@ export default function GardenDesignPage() {
                   lineHeight: 1.3,
                 }}
               >
-                Our Initial Garden Design Consultation
+                Driveways & Block Paving
               </h2>
               <p className="reveal-item mb-5 leading-relaxed" style={{ color: "var(--warm-grey)", fontSize: "15px" }}>
-                Every project begins with a site visit and consultation. This is where we get to know you, understand your aspirations, and assess the potential of your outdoor space.
+                A well-built driveway makes a lasting first impression. We install premium block paving in herringbone, basket weave, and stretcher bond patterns — using materials that combine durability with kerb appeal.
               </p>
               <p className="reveal-item mb-5 leading-relaxed" style={{ color: "var(--warm-grey)", fontSize: "15px" }}>
-                We study the architecture of your home, the orientation and topography of the site, and any existing features worth preserving. We discuss your lifestyle, entertaining habits, and how you imagine using the garden throughout the seasons.
+                From charcoal and slate tones to warm golds and rustic blends, we help you choose colours and patterns that complement your property. Every driveway includes proper excavation, sub-base preparation, edge restraints, and drainage — built to last.
               </p>
               <p className="reveal-item leading-relaxed" style={{ color: "var(--warm-grey)", fontSize: "15px" }}>
-                Following the consultation, we prepare a comprehensive design proposal outlining our creative direction, scope of work, and investment range — giving you clarity before we begin.
+                We also offer tarmac driveways, resin bound surfaces, and gravel installations — all finished to the same exacting standard.
               </p>
             </div>
           </div>
@@ -196,19 +196,19 @@ export default function GardenDesignPage() {
                   lineHeight: 1.3,
                 }}
               >
-                Premium Garden Design
+                Patios, Gardens & Landscaping
               </h2>
               <p className="reveal-item mb-5 leading-relaxed" style={{ color: "var(--warm-grey)", fontSize: "15px" }}>
-                Our premium design service is a comprehensive, end-to-end offering for clients who want a fully bespoke garden. This includes multiple concept options, detailed 3D visualisations, and a complete set of construction-ready drawings.
+                From Indian sandstone and porcelain patios to complete garden transformations, we create outdoor living spaces that are both beautiful and practical. Every patio is laid on a proper concrete foundation with precise falls for drainage.
               </p>
               <p className="reveal-item mb-5 leading-relaxed" style={{ color: "var(--warm-grey)", fontSize: "15px" }}>
-                We work with the finest materials — natural stone, hardwood, specialist metalwork — and specify every element to ensure a seamless transition from design to build.
+                Our landscaping services include raised planters, retaining walls, sleeper beds, decorative gravel areas, and full garden redesigns. We work with natural stone, composite decking, and premium paving to create spaces you&apos;ll love spending time in.
               </p>
               <p className="reveal-item mb-5 leading-relaxed" style={{ color: "var(--warm-grey)", fontSize: "15px" }}>
-                Each planting scheme is personally designed by our horticulturists, considering year-round structure, seasonal colour, scent, and wildlife value. The result is a garden that looks stunning from day one and only improves with age.
+                We also specialise in fencing and boundary work — from close-board panels and featherboard to brick pillars and decorative metalwork — as well as high-quality artificial lawns that look great year-round with zero maintenance.
               </p>
               <p className="reveal-item leading-relaxed" style={{ color: "var(--warm-grey)", fontSize: "15px" }}>
-                From initial consultation to final handover, you will have a single point of contact — ensuring complete continuity and confidence throughout the process.
+                Every project is managed by our team from first visit to final walkthrough — one point of contact, complete peace of mind.
               </p>
             </div>
           </div>
@@ -228,7 +228,7 @@ export default function GardenDesignPage() {
               lineHeight: 1.3,
             }}
           >
-            The Garden Design Process
+            How We Work
           </h2>
           <div className="max-w-3xl mx-auto">
             {designProcess.map((item, i) => (
@@ -284,13 +284,13 @@ export default function GardenDesignPage() {
                   lineHeight: 1.3,
                 }}
               >
-                Ready to transform your garden?
+                Ready to Transform Your Outdoor Space?
               </h2>
               <p
                 className="reveal-item mb-6 leading-relaxed"
                 style={{ color: "rgba(255,255,255,0.8)", fontSize: "15px" }}
               >
-                Book a complimentary design consultation and let us explore what your outdoor space could become.
+                Get in touch for a free, no-obligation site visit and quote. We&apos;ll discuss your ideas, show you material options, and give you a clear price — no hidden extras, no pressure.
               </p>
               <p className="reveal-item mt-6">
                 <a
@@ -318,7 +318,7 @@ export default function GardenDesignPage() {
                   lineHeight: 1.4,
                 }}
               >
-                Arrange an initial garden design consultation.
+                Request your free quote today.
               </p>
               <form style={{ display: "flex", flexDirection: "column", gap: "28px" }} onSubmit={(e) => e.preventDefault()}>
                 {/* Row 1: First name / Last name */}
@@ -361,10 +361,12 @@ export default function GardenDesignPage() {
                     <label className="block" style={{ color: "#FFFFFF", fontSize: "14px", marginBottom: "10px" }}>What service are you looking for?</label>
                     <select className="w-full px-5 text-base focus:outline-none focus:ring-2 focus:ring-white/30 appearance-none" style={{ background: "rgba(255,255,255,0.95)", border: "none", color: "#2C2C2C", borderRadius: "6px", height: "56px", backgroundImage: `url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%23666' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")`, backgroundRepeat: "no-repeat", backgroundPosition: "right 16px center", paddingRight: "44px" }}>
                       <option value="">Select...</option>
-                      <option value="design">Garden Design</option>
-                      <option value="landscaping">Landscaping &amp; Build</option>
-                      <option value="styling">Garden Styling</option>
-                      <option value="planting">Planting Schemes</option>
+                      <option value="driveway">Driveway &amp; Block Paving</option>
+                      <option value="patio">Patio &amp; Paving</option>
+                      <option value="landscaping">Garden Landscaping</option>
+                      <option value="fencing">Fencing &amp; Boundaries</option>
+                      <option value="lawn">Artificial Lawn</option>
+                      <option value="other">Other</option>
                     </select>
                   </div>
                 </div>
