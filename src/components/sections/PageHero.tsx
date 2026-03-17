@@ -79,6 +79,7 @@ export default function PageHero({
             fontWeight: 400,
             lineHeight: 1.15,
             opacity: 0,
+            color: "#fff",
             textTransform: centered ? "uppercase" as const : "none" as const,
             letterSpacing: centered ? "0.05em" : "0",
           }}
